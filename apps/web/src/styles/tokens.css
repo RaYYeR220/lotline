@@ -1,0 +1,64 @@
+/* Lotline design tokens: produce palette, one accent (the trace), named radius scale. */
+:root {
+  /* ground and produce ramp */
+  --oat: #faf3e6;
+  --husk: #f3edd1;
+  --cilantro: #d8e0a5;
+  --lime: #97c74b;
+  --leaf: #2f4e37;
+  --deep: #154726;
+
+  /* the one accent: the trace */
+  --tangerine: #f1753f;
+  --tangerine-ink: #a8431a;
+  --tangerine-wash: rgba(241, 117, 63, 0.14);
+
+  /* status inks (always paired with a text label) */
+  --hold: #f0ce15;
+  --hold-line: #c29a0c;
+  --hold-ink: #7a5a00;
+  --clear: var(--lime);
+  --clear-ink: #3b6a1c;
+  --rejected: #9b927f;
+  --rejected-ink: #6b6352;
+
+  /* text */
+  --ink: var(--deep);
+  --ink-2: var(--leaf);
+  --ink-3: #5a6e5c;
+  --on-deep: var(--oat);
+
+  /* lines: hairlines instead of shadows */
+  --hair: rgba(21, 71, 38, 0.14);
+  --hair-strong: rgba(21, 71, 38, 0.24);
+  --hair-soft: rgba(21, 71, 38, 0.08);
+  --panel: rgba(250, 243, 230, 0.78);
+  --panel-solid: #fbf6ec;
+
+  /* type */
+  --display: "Bricolage Grotesque Variable", "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --text: "Figtree Variable", "Figtree", ui-sans-serif, system-ui, sans-serif;
+  --mono: ui-monospace, "SFMono-Regular", "Cascadia Mono", "Segoe UI Mono", Menlo, Consolas, monospace;
+
+  /* named radius scale */
+  --r-xs: 4px;
+  --r-sm: 13.5px;
+  --r-md: 18px;
+  --r-lg: 20px;
+  --r-full: 999px;
+
+  /* spacing */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 72px;
+  --s-9: 112px;
+  --gutter: clamp(16px, 4.4vw, 64px);
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='2.6' intercept='-.8'/%3E%3CfeFuncG type='linear' slope='2.6' intercept='-.8'/%3E%3CfeFuncB type='linear' slope='2.6' intercept='-.8'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
