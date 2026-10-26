@@ -13,6 +13,8 @@ export interface ServerDeps {
   logsDir?: string;
   /** Example notices offered in the UI. */
   examples?: { id: string; title: string; notice: string }[];
+  /** Nightly mock-recall drill over a sample of active lots. */
+  drill?: (opts: { sample?: number; days?: number; asOf?: string }) => Promise<unknown>;
 }
 
 const RecallBody = z
@@ -39,6 +41,13 @@ export function buildServer(deps: ServerDeps): { app: FastifyInstance; runs: Run
 
   app.get("/healthz", async () => ({ ok: true, mode: deps.mode }));
   app.get("/api/examples", async () => deps.examples ?? []);
+
+  app.post("/api/drills", async (req, reply) => {
+    if (!deps.drill) return reply.status(404).send({ error: "not_found", detail: "drills are not enabled" });
+    const body = z.object({ sample: z.number().int().min(1).max(96).optional(), days: z.number().int().min(1).max(60).optional(), asOf: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional() }).safeParse(req.body ?? {});
+    if (!body.success) return reply.status(400).send({ error: "invalid_input", detail: body.error.issues.map((i) => i.message).join("; ") });
+    return deps.drill(body.data);
+  });
 
   app.post("/api/recalls", async (req, reply) => {
     const parsed = RecallBody.safeParse(req.body ?? {});

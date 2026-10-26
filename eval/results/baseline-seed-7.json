@@ -1,0 +1,209 @@
+[
+  {
+    "noticeId": "N1",
+    "affected": 19,
+    "caught": 18,
+    "missed": [
+      "FS02"
+    ],
+    "falseClear": [],
+    "pulledUnaffected": [
+      "ST02",
+      "ST20",
+      "ST09",
+      "ST08",
+      "ST07",
+      "ST06"
+    ],
+    "provableClears": 2,
+    "clearsMade": 17,
+    "holds": 0,
+    "pulls": 24,
+    "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+    "promptChars": 41925,
+    "ms": 4712
+  },
+  {
+    "noticeId": "N2",
+    "affected": 16,
+    "caught": 11,
+    "missed": [
+      "ST03",
+      "ST04",
+      "ST05",
+      "ST06"
+    ],
+    "falseClear": [
+      "FS01"
+    ],
+    "pulledUnaffected": [
+      "ST07",
+      "ST10",
+      "ST12",
+      "ST13",
+      "ST14",
+      "ST15",
+      "ST16",
+      "ST17",
+      "ST22",
+      "ST24",
+      "ST27",
+      "ST28",
+      "ST29",
+      "ST30",
+      "ST32"
+    ],
+    "provableClears": 0,
+    "clearsMade": 12,
+    "holds": 0,
+    "pulls": 26,
+    "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+    "promptChars": 41774,
+    "ms": 4840
+  },
+  {
+    "noticeId": "N3",
+    "affected": 14,
+    "caught": 5,
+    "missed": [
+      "ST03",
+      "ST09",
+      "ST10",
+      "ST11",
+      "ST23",
+      "ST25"
+    ],
+    "falseClear": [
+      "FS01",
+      "ST30",
+      "ST31"
+    ],
+    "pulledUnaffected": [
+      "ST06",
+      "ST07",
+      "ST02",
+      "ST05",
+      "ST08",
+      "ST13",
+      "RP-671742",
+      "RP-671713",
+      "RP-671714",
+      "RP-671727",
+      "RP-671762",
+      "RP-671779",
+      "RP-671792",
+      "RP-671809",
+      "RP-671824",
+      "RP-671843",
+      "RP-671860",
+      "RP-671871",
+      "RP-671885",
+      "RP-671897",
+      "RP-671913",
+      "RP-671930"
+    ],
+    "provableClears": 2,
+    "clearsMade": 19,
+    "holds": 0,
+    "pulls": 27,
+    "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+    "promptChars": 24772,
+    "ms": 5224
+  },
+  {
+    "noticeId": "N4",
+    "affected": 11,
+    "caught": 9,
+    "missed": [
+      "FS03"
+    ],
+    "falseClear": [
+      "ST02"
+    ],
+    "pulledUnaffected": [
+      "ST12",
+      "ST15",
+      "ST18",
+      "ST24",
+      "ST25",
+      "ST29",
+      "ST32"
+    ],
+    "provableClears": 0,
+    "clearsMade": 15,
+    "holds": 0,
+    "pulls": 16,
+    "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+    "promptChars": 19696,
+    "ms": 3146
+  },
+  {
+    "noticeId": "N5",
+    "affected": 16,
+    "caught": 15,
+    "missed": [
+      "FS02"
+    ],
+    "falseClear": [],
+    "pulledUnaffected": [
+      "ST03",
+      "ST08"
+    ],
+    "provableClears": 0,
+    "clearsMade": 15,
+    "holds": 0,
+    "pulls": 17,
+    "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+    "promptChars": 15853,
+    "ms": 3355
+  },
+  {
+    "noticeId": "N6",
+    "affected": 21,
+    "caught": 18,
+    "missed": [
+      "FS01",
+      "FS02",
+      "FS03"
+    ],
+    "falseClear": [],
+    "pulledUnaffected": [
+      "ST03",
+      "ST05",
+      "ST06",
+      "ST09",
+      "ST12",
+      "ST13",
+      "ST18",
+      "ST19",
+      "ST21",
+      "ST27",
+      "ST29",
+      "ST30",
+      "ST31",
+      "ST32"
+    ],
+    "provableClears": 0,
+    "clearsMade": 0,
+    "holds": 0,
+    "pulls": 32,
+    "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+    "promptChars": 38070,
+    "ms": 6401
+  },
+  {
+    "noticeId": "N7",
+    "affected": 0,
+    "caught": 0,
+    "missed": [],
+    "falseClear": [],
+    "pulledUnaffected": [],
+    "provableClears": 0,
+    "clearsMade": 0,
+    "holds": 0,
+    "pulls": 0,
+    "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+    "promptChars": 2330,
+    "ms": 548
+  }
+]

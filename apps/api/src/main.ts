@@ -3,7 +3,7 @@ try { process.loadEnvFile(".env"); } catch { /* environment only */ }
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { TraceLog, loadConfig } from "@lotline/core";
-import { ScoutGate, createRunDeps, runRecall } from "@lotline/agents";
+import { ScoutGate, createRunDeps, nightlyDrill, runRecall } from "@lotline/agents";
 import { buildServer } from "./server.ts";
 
 const cfg = loadConfig();
@@ -22,6 +22,7 @@ const examples = existsSync(examplesFile)
 
 const { app } = buildServer({
   examples,
+  drill: (opts) => nightlyDrill(createRunDeps(cfg, new TraceLog(`drill-${Date.now()}`, { dir: cfg.logsDir })), opts),
   mode: cfg.sampleMode ? "sample" : "live",
   logsDir: cfg.logsDir,
   staticDir: existsSync(webDir) ? webDir : undefined,
