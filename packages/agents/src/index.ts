@@ -13,3 +13,4 @@ export * from "./memory.ts";
 export * from "./orchestrator.ts";
 export * from "./runtime.ts";
 export * from "./drill.ts";
+export * from "./steward.ts";

@@ -9,6 +9,7 @@ import { learnQuirks } from "./memory.ts";
 import { plan } from "./planner.ts";
 import { report } from "./reporter.ts";
 import { q } from "./sql.ts";
+import { stewardWriteBack } from "./steward.ts";
 import { resolveImplicated, traceForward } from "./tracer.ts";
 
 export interface RecallInput {
@@ -93,6 +94,13 @@ export async function runRecall(input: RecallInput, deps: RunDeps): Promise<RunR
   const { actions } = await plan(ctx, graph);
   const { spreadsheet, drafts } = await report(ctx, scope, graph, actions);
   await learnQuirks(ctx.memory, graph, ctx.trace.runId, ctx.trace);
+  if (deps.data.backend === "zetaris") {
+    try {
+      await stewardWriteBack(ctx, map);
+    } catch (err) {
+      ctx.trace.emit({ agent_name: "DataSteward", action: "write_back.failed", input_summary: "semantic layer", output_summary: (err as Error).message.slice(0, 200), status: "error" });
+    }
+  }
 
   const events = ctx.trace.events();
   const result: RunResult = {
