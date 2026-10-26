@@ -48,17 +48,22 @@ export class NightshiftGateway implements ModelGateway {
   async chat<T>(req: ChatReq<T>): Promise<ChatRes<T>> {
     const started = Date.now();
     let user = req.user;
+    let model = this.cfg.lanes[req.lane];
     for (let attempt = 0; attempt < 2; attempt++) {
       let completion: Completion;
       try {
-        completion = await this.complete(req, user);
+        completion = await this.complete(req, user, model);
       } catch (err) {
+        // A provider that refuses a lane's model gets one retry on the reasoning lane's model.
+        const reroute = attempt === 0 && model !== this.cfg.lanes.reason && !req.imagePng;
         this.trace.emit({
           agent_name: req.agent, action: "nightshift.chat", input_summary: short(req.purpose),
-          output_summary: `request failed: ${short((err as Error).message)}`, model: this.cfg.lanes[req.lane],
-          retry_count: attempt, status: "error", detail: { lane: req.lane },
+          output_summary: `request failed: ${short((err as Error).message)}${reroute ? `; retrying on ${this.cfg.lanes.reason}` : ""}`, model,
+          retry_count: attempt, status: reroute ? "retry" : "error", detail: { lane: req.lane },
         });
-        break;
+        if (!reroute) break;
+        model = this.cfg.lanes.reason;
+        continue;
       }
       const parsed = parseWith(req.schema, completion.raw);
       if (parsed.ok) {
@@ -128,9 +133,8 @@ export class NightshiftGateway implements ModelGateway {
     return result;
   }
 
-  private async complete<T>(req: ChatReq<T>, user: string): Promise<Completion> {
+  private async complete<T>(req: ChatReq<T>, user: string, model = this.cfg.lanes[req.lane]): Promise<Completion> {
     this.calls++;
-    const model = this.cfg.lanes[req.lane];
     const thinking = req.thinking ?? false;
     const content = req.imagePng
       ? [

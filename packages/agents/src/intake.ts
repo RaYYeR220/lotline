@@ -20,7 +20,7 @@ const Extracted = z.object({
   commodity: z.string(),
   productText: z.string(),
   firm: z.string().nullable(),
-  lotCodes: z.array(z.string()),
+  lotCodes: z.preprocess((v) => (typeof v === "string" ? v.split(/[,;s]+/).filter(Boolean) : v ?? []), z.array(z.string())),
   dateFrom: z.string().nullable(),
   dateTo: z.string().nullable(),
   hazard: z.string().nullable(),
