@@ -15,7 +15,7 @@ const only = process.argv.find((a) => a.startsWith("--notices="))?.split("=")[1]
 const key = JSON.parse(readFileSync(`eval/keys/seed-${seed}.json`, "utf8"));
 const notices: { noticeId: string; text: string }[] = JSON.parse(readFileSync("data/sample/notices.json", "utf8"));
 const cfg = loadConfig();
-const models = cfg.sampleMode ? "recorded answers (sample mode)" : "live through Nightshift";
+const models = cfg.sampleMode ? "recorded answers (sample mode)" : process.env.LOTLINE_DATA === "sample" ? "live models through Nightshift over the bundled snapshot" : "live: Zetaris data layer + Nightshift models";
 
 const rows: (NoticeScore & { modelCalls: number; fallbacks: number; ms: number; panels: number; retries: number; refused: number; models: string[] })[] = [];
 for (const n of notices.filter((x) => !only || only.includes(x.noticeId))) {
