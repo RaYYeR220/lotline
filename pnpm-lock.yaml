@@ -59,6 +59,9 @@ importers:
       '@lotline/core':
         specifier: workspace:*
         version: link:../core
+      '@lotline/scout':
+        specifier: workspace:*
+        version: link:../engines/scout
       '@lotline/world-model':
         specifier: workspace:*
         version: link:../engines/world-model
