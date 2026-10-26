@@ -57,9 +57,18 @@ export interface PanelRes {
   votes: PanelVote[];
 }
 
+export interface OcrRes {
+  text: string;
+  lines: { text: string; confidence: number }[];
+  model: string;
+  source: "nightshift" | "cache";
+}
+
 export interface ModelGateway {
   readonly mode: "live" | "sample";
   chat<T>(req: ChatReq<T>): Promise<ChatRes<T>>;
   panel<T extends { answer: string; why: string }>(req: PanelReq<T>): Promise<PanelRes>;
+  /** Text of a scanned page from Nightshift's local document reader; null when no reader is available. */
+  ocr(req: { agent: string; purpose: string; imagePng: Uint8Array }): Promise<OcrRes | null>;
   callCount(): number;
 }

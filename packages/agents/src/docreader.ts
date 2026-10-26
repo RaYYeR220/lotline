@@ -37,10 +37,19 @@ export async function readBol(ctx: AgentContext, scanKey: string, purpose: strin
     ctx.trace.emit({ agent_name: "DocReader", action: "scan.missing", input_summary: scanKey, output_summary: "scan not available to this run", target_agent: "EvidenceCritic", status: "skipped" });
     return { reading: null, model: "none" };
   }
-  const res = await ctx.models.chat<BolReading | null>({
-    agent: "DocReader", lane: "vision", purpose, system: SYSTEM, user: `Bill of lading scan ${scanKey}`,
-    imagePng: new Uint8Array(readFileSync(file)), schema: BolReading.nullable(), ruleFallback: () => null, targetAgent: "EvidenceCritic",
-  });
+  const png = new Uint8Array(readFileSync(file));
+  // Read the page locally first (Nightshift's document reader); a model only structures the text it found.
+  const page = await ctx.models.ocr({ agent: "DocReader", purpose: `${purpose} (local OCR)`, imagePng: png });
+  const res = page
+    ? await ctx.models.chat<BolReading | null>({
+        agent: "DocReader", lane: "reason", purpose: `${purpose} (structure OCR text)`, system: SYSTEM,
+        user: `OCR text of bill of lading scan ${scanKey} (line by line, as read):\n${page.text}`,
+        schema: BolReading.nullable(), ruleFallback: () => null, targetAgent: "EvidenceCritic",
+      })
+    : await ctx.models.chat<BolReading | null>({
+        agent: "DocReader", lane: "vision", purpose, system: SYSTEM, user: `Bill of lading scan ${scanKey}`,
+        imagePng: png, schema: BolReading.nullable(), ruleFallback: () => null, targetAgent: "EvidenceCritic",
+      });
   ctx.trace.emit({
     agent_name: "DocReader", action: "scan.read", input_summary: scanKey,
     output_summary: res.json ? `BOL ${res.json.bolNo ?? "?"}: lot ${res.json.lot ?? "?"}, ${res.json.cases ?? "?"} cases; received stamp ${res.json.receivedStamp?.date ?? "none"}` : "unreadable without a vision model",

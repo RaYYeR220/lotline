@@ -1,9 +1,10 @@
 import type { TraceLog } from "@lotline/core";
 import { ResponseCache, cacheKey } from "./cache.ts";
+import { ocrKey } from "./ocr.ts";
 import { short } from "./nightshift.ts";
 import { tally } from "./panel.ts";
 import { parseWith } from "./parse.ts";
-import type { ChatReq, ChatRes, ModelGateway, PanelReq, PanelRes, PanelVote } from "./types.ts";
+import type { ChatReq, ChatRes, ModelGateway, OcrRes, PanelReq, PanelRes, PanelVote } from "./types.ts";
 
 /**
  * Sample mode: no network. Answers come from responses recorded on live runs; when a prompt was never
@@ -44,6 +45,18 @@ export class SampleGateway implements ModelGateway {
       model: "rules/fallback", status: "success", detail: { lane: req.lane },
     });
     return { model: "rules/fallback", lane: req.lane, json: value, raw: "", latencyMs: 0, source: "rules" };
+  }
+
+  async ocr(req: { agent: string; purpose: string; imagePng: Uint8Array }): Promise<OcrRes | null> {
+    const hit = this.cache.get(ocrKey(req.imagePng));
+    if (!hit) {
+      this.trace.emit({ agent_name: req.agent, action: "nightshift.ocr", input_summary: short(req.purpose), output_summary: "page not read on a recorded run", model: "rules/fallback", status: "skipped" });
+      return null;
+    }
+    this.calls++;
+    const page = JSON.parse(hit.raw) as { text: string; lines: { text: string; confidence: number }[] };
+    this.trace.emit({ agent_name: req.agent, action: "nightshift.ocr", input_summary: short(req.purpose), output_summary: `${page.lines.length} lines (recorded)`, model: `cache/${hit.model}`, status: "success", detail: { replayed: true } });
+    return { ...page, model: `cache/${hit.model}`, source: "cache" };
   }
 
   async panel<T extends { answer: string; why: string }>(req: PanelReq<T>): Promise<PanelRes> {

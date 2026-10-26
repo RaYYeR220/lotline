@@ -1,8 +1,9 @@
 import type { LotlineConfig, TraceLog } from "@lotline/core";
 import { ResponseCache, cacheKey } from "./cache.ts";
+import { NightshiftOcr, ocrKey } from "./ocr.ts";
 import { tally } from "./panel.ts";
 import { parseWith } from "./parse.ts";
-import type { ChatReq, ChatRes, Lane, ModelGateway, PanelReq, PanelRes, PanelVote } from "./types.ts";
+import type { ChatReq, ChatRes, Lane, ModelGateway, OcrRes, PanelReq, PanelRes, PanelVote } from "./types.ts";
 
 interface Options {
   fetchImpl?: typeof fetch;
@@ -29,6 +30,7 @@ export class NightshiftGateway implements ModelGateway {
   private readonly fetchImpl: typeof fetch;
   private readonly cache: ResponseCache;
   private calls = 0;
+  private reader?: NightshiftOcr;
 
   constructor(
     private readonly cfg: LotlineConfig,
@@ -85,6 +87,23 @@ export class NightshiftGateway implements ModelGateway {
       model: "rules/fallback", status: "success", detail: { lane: req.lane },
     });
     return { model: "rules/fallback", lane: req.lane, json: value, raw: "", latencyMs: Date.now() - started, source: "rules" };
+  }
+
+  async ocr(req: { agent: string; purpose: string; imagePng: Uint8Array }): Promise<OcrRes | null> {
+    this.reader ??= new NightshiftOcr(this.cfg.nightshift.baseUrl, this.cfg.nightshift.token, this.fetchImpl);
+    const started = Date.now();
+    const page = await this.reader.page(req.imagePng).catch(() => null);
+    if (!page) {
+      this.trace.emit({ agent_name: req.agent, action: "nightshift.ocr", input_summary: short(req.purpose), output_summary: "no document reader available on this Nightshift", model: "meterless/ocr", status: "skipped" });
+      return null;
+    }
+    this.calls++;
+    if (this.opts.record) this.cache.put({ key: ocrKey(req.imagePng), lane: "vision", model: page.model, raw: JSON.stringify({ text: page.text, lines: page.lines }) });
+    this.trace.emit({
+      agent_name: req.agent, action: "nightshift.ocr", input_summary: short(req.purpose), output_summary: `${page.lines.length} lines read locally`,
+      model: page.model, status: "success", detail: { latency_ms: Date.now() - started, egress: "none" },
+    });
+    return { ...page, source: "nightshift" };
   }
 
   async panel<T extends { answer: string; why: string }>(req: PanelReq<T>): Promise<PanelRes> {
