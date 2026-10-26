@@ -139,7 +139,7 @@ export async function review(ctx: AgentContext, graph: TraceGraph, quirks: Recor
     });
     ctx.trace.emit({
       agent_name: AGENT, action: "link.ruled", input_summary: `${l.kind} ${l.from} -> ${l.to}`, output_summary: `${l.status}: ${l.notes.at(-1) ?? ""}`.slice(0, 200),
-      target_agent: "ActionPlanner", confidence: l.confidence, status: l.status === "proven" ? "success" : "escalated", detail: { link_id: l.id },
+      target_agent: "ActionPlanner", confidence: l.confidence, status: l.status === "proven" ? "success" : "escalated", detail: { link_id: l.id, link_status: l.status, notes: l.notes },
     });
   }
 

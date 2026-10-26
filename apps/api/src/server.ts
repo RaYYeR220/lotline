@@ -11,6 +11,8 @@ export interface ServerDeps {
   /** Built web UI to serve at `/` (optional). */
   staticDir?: string;
   logsDir?: string;
+  /** Example notices offered in the UI. */
+  examples?: { id: string; title: string; notice: string }[];
 }
 
 const RecallBody = z
@@ -36,6 +38,7 @@ export function buildServer(deps: ServerDeps): { app: FastifyInstance; runs: Run
   });
 
   app.get("/healthz", async () => ({ ok: true, mode: deps.mode }));
+  app.get("/api/examples", async () => deps.examples ?? []);
 
   app.post("/api/recalls", async (req, reply) => {
     const parsed = RecallBody.safeParse(req.body ?? {});

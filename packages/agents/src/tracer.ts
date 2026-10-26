@@ -207,6 +207,12 @@ export async function traceForward(ctx: AgentContext, implicated: string[], comm
     }
   }
 
+  for (const l of graph.links) {
+    ctx.trace.emit({
+      agent_name: AGENT, action: "link.proposed", input_summary: `${l.kind} ${l.from} -> ${l.to}`, output_summary: `${l.evidence.length} record(s): ${l.evidence.map((e) => `${e.source}.${e.table}`).join(", ")}`,
+      target_agent: "EvidenceCritic", status: "success", detail: { link: { id: l.id, kind: l.kind, from: l.from, to: l.to, at: l.at, quantity: l.quantity ?? null } },
+    });
+  }
   ctx.trace.emit({
     agent_name: AGENT, action: "trace.forward", input_summary: `${implicated.length} implicated lots`,
     output_summary: `${graph.links.length} links proposed (${allLpns.length} pallets, ${new Set(graph.links.filter((l) => l.kind === "shipped-to").map((l) => l.to)).size} locations); ${graph.external.length} shipments to outside firms`,

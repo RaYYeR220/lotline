@@ -36,6 +36,9 @@ importers:
       '@fastify/static':
         specifier: ^8.0.3
         version: 8.3.0
+      '@lotline/agents':
+        specifier: workspace:*
+        version: link:../../packages/agents
       '@lotline/core':
         specifier: workspace:*
         version: link:../../packages/core
