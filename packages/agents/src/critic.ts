@@ -43,7 +43,7 @@ Reply with one JSON object: {"answer":"SAME|DIFFERENT|UNPROVEN","why":"one sente
 const describe = (l: TraceLink, extra: string[] = []) =>
   [
     `link ${l.id}: ${l.kind} ${l.from} -> ${l.to} on ${l.at}${l.quantity != null ? `, ${l.quantity} cases` : ""}`,
-    ...l.evidence.map((e: Evidence) => `- ${e.source}.${e.table} ${e.rowKey}: ${JSON.stringify(Object.fromEntries(Object.entries(e.fields).filter(([k]) => k !== "notes")))}`),
+    ...[...l.evidence].sort((x, y) => `${x.source}${x.table}${x.rowKey}`.localeCompare(`${y.source}${y.table}${y.rowKey}`)).map((e: Evidence) => `- ${e.source}.${e.table} ${e.rowKey}: ${JSON.stringify(Object.fromEntries(Object.entries(e.fields).filter(([k]) => k !== "notes")))}`),
     ...extra,
   ].join("\n");
 

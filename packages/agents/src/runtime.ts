@@ -1,4 +1,5 @@
-import { existsSync, readFileSync } from "node:fs";
+import { cpSync, existsSync, mkdtempSync, readFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import path from "node:path";
 import { NightshiftGateway, SampleGateway, createDataLayer } from "@lotline/adapters";
 import type { LotlineConfig, TraceLog } from "@lotline/core";
@@ -13,17 +14,35 @@ export function nightshiftToken(cfg: LotlineConfig): string | undefined {
   return file && existsSync(file) ? readFileSync(file, "utf8").trim() : undefined;
 }
 
-/** Everything a run needs, wired for live mode (Zetaris + Nightshift) or sample mode (bundled snapshot). */
+/**
+ * Partner memory for a run. Live runs share one persistent store, so what one recall learns the next one uses.
+ * Sample runs (and recordings made for them) start from the bundled snapshot in a scratch copy, so every
+ * sample run sees the same memory and replays the same recorded model answers.
+ */
+function memoryDir(cfg: LotlineConfig, stateDir: string, runId: string, recording: boolean): string {
+  if (!cfg.sampleMode && !recording) return path.join(stateDir, "hmem");
+  const scratch = mkdtempSync(path.join(tmpdir(), `lotline-hmem-${runId}-`));
+  const snapshot = path.resolve("data/sample/hmem");
+  if (existsSync(snapshot)) cpSync(snapshot, scratch, { recursive: true });
+  return scratch;
+}
+
+/**
+ * Everything a run needs. Live: Zetaris + Nightshift. Sample: the bundled snapshot and recorded answers.
+ * `LOTLINE_DATA=sample` keeps live models but reads the bundled snapshot (used to record sample answers).
+ */
 export function createRunDeps(cfg: LotlineConfig, trace: TraceLog, opts: { stateDir?: string } = {}): RunDeps {
   const stateDir = opts.stateDir ?? process.env.LOTLINE_STATE_DIR ?? "data/state";
+  const recording = /^(1|true)$/i.test(process.env.RECORD_CACHE ?? "");
+  const dataCfg = process.env.LOTLINE_DATA === "sample" ? { ...cfg, sampleMode: true } : cfg;
   const models = cfg.sampleMode
     ? new SampleGateway(trace)
-    : new NightshiftGateway({ ...cfg, nightshift: { ...cfg.nightshift, token: nightshiftToken(cfg) } }, trace, { record: /^(1|true)$/i.test(process.env.RECORD_CACHE ?? "") });
+    : new NightshiftGateway({ ...cfg, nightshift: { ...cfg.nightshift, token: nightshiftToken(cfg) } }, trace, { record: recording });
   return {
     cfg,
-    data: createDataLayer(cfg, trace),
+    data: createDataLayer(dataCfg, trace),
     models,
-    memory: new HmemPartnerMemory(path.join(stateDir, cfg.sampleMode ? "hmem-sample" : "hmem"), trace),
+    memory: new HmemPartnerMemory(memoryDir(cfg, stateDir, trace.runId, recording), trace),
     gate: new ScoutGate(cfg.contractSecret, trace),
     trace,
   };

@@ -49,24 +49,24 @@ export async function resolveImplicated(ctx: AgentContext, scope: RecallScope, m
   if (scope.lotCodes.length) {
     const all = scope.lotCodes.flatMap(spellings);
     const h = map["grower.harvest"];
-    const harvest = await ctx.data.query(`SELECT ${h.lot}, commodity FROM grower.harvest WHERE ${h.lot} IN ${inList(all)}`, { ...qctx, purpose: "lot codes in grower harvest records" });
+    const harvest = await ctx.data.query(`SELECT ${h.lot}, commodity FROM grower.harvest WHERE ${h.lot} IN ${inList(all)} ORDER BY ${h.lot}`, { ...qctx, purpose: "lot codes in grower harvest records" });
     for (const r of harvest.rows) { found.add(canonicalLot(String(r[h.lot!]))); commodity = String(r.commodity ?? commodity); }
     const s = map["packer.shipments"];
-    const packed = await ctx.data.query(`SELECT DISTINCT ${s.lot} FROM packer.shipments WHERE ${s.lot} IN ${inList(all)}`, { ...qctx, purpose: "lot codes in packer records" });
+    const packed = await ctx.data.query(`SELECT DISTINCT ${s.lot} FROM packer.shipments WHERE ${s.lot} IN ${inList(all)} ORDER BY ${s.lot}`, { ...qctx, purpose: "lot codes in packer records" });
     for (const r of packed.rows) found.add(canonicalLot(String(r[s.lot!])));
     const l = map["wms.lpn"];
-    const direct = await ctx.data.query(`SELECT ${l.lot}, commodity FROM wms.lpn WHERE ${l.lot} IN ${inList(all)}`, { ...qctx, purpose: "lot codes received directly from manufacturers" });
+    const direct = await ctx.data.query(`SELECT ${l.lot}, commodity FROM wms.lpn WHERE ${l.lot} IN ${inList(all)} ORDER BY ${l.lot}`, { ...qctx, purpose: "lot codes received directly from manufacturers" });
     for (const r of direct.rows) { found.add(canonicalLot(String(r[l.lot!]))); commodity = String(r.commodity ?? commodity); }
   } else if (scope.dateFrom && scope.dateTo) {
     const h = map["grower.harvest"];
     let farmFilter = "";
     if (scope.firm) {
-      const firms = await ctx.data.query(`SELECT firm_id, name FROM ref.firms WHERE role = 'grower'`, { ...qctx, purpose: "growers named in the notice" });
+      const firms = await ctx.data.query(`SELECT firm_id, name FROM ref.firms WHERE role = 'grower' ORDER BY firm_id`, { ...qctx, purpose: "growers named in the notice" });
       const hit = firms.rows.filter((f) => scope.firm!.toLowerCase().includes(String(f.name).toLowerCase()) || String(f.name).toLowerCase().includes(scope.firm!.toLowerCase().split(",")[0].trim()));
       if (hit.length) farmFilter = ` AND farm_id IN ${inList(hit.map((f) => String(f.firm_id)))}`;
     }
     const rows = await ctx.data.query(
-      `SELECT ${h.lot}, farm_id, ${h.date} FROM grower.harvest WHERE commodity = ${q(commodity)} AND ${h.date} >= ${q(scope.dateFrom)} AND ${h.date} <= ${q(scope.dateTo)}${farmFilter}`,
+      `SELECT ${h.lot}, farm_id, ${h.date} FROM grower.harvest WHERE commodity = ${q(commodity)} AND ${h.date} >= ${q(scope.dateFrom)} AND ${h.date} <= ${q(scope.dateTo)}${farmFilter} ORDER BY ${h.lot}`,
       { ...qctx, purpose: "harvest lots inside the notice's date window" },
     );
     for (const r of rows.rows) found.add(canonicalLot(String(r[h.lot!])));
@@ -92,9 +92,9 @@ export async function traceForward(ctx: AgentContext, implicated: string[], comm
 
   // 1. Transformation: grower lots repacked into packer lots (one implicated input taints the whole output).
   const rp = map["packer.repacks"];
-  const repacks = await ctx.data.query(`SELECT * FROM packer.repacks WHERE input_lot IN ${inList(implicated.flatMap(spellings))}`, qctx("repacks that consumed implicated lots"));
+  const repacks = await ctx.data.query(`SELECT * FROM packer.repacks WHERE input_lot IN ${inList(implicated.flatMap(spellings))} ORDER BY repack_id`, qctx("repacks that consumed implicated lots"));
   const receipts = repacks.rows.length
-    ? await ctx.data.query(`SELECT * FROM packer.receipts WHERE supplier_lot IN ${inList(repacks.rows.map((r) => String(r.input_lot)))}`, qctx("packer receipts of those input lots"))
+    ? await ctx.data.query(`SELECT * FROM packer.receipts WHERE supplier_lot IN ${inList(repacks.rows.map((r) => String(r.input_lot)))} ORDER BY receipt_id`, qctx("packer receipts of those input lots"))
     : null;
   const packerLots = new Set(implicated.filter((l) => l.startsWith("PK")));
   for (const r of repacks.rows) {
@@ -110,7 +110,7 @@ export async function traceForward(ctx: AgentContext, implicated: string[], comm
   const lpnByLot = new Map<string, Set<string>>();
   if (packerLots.size) {
     const sp = map["packer.shipments"];
-    const ships = await ctx.data.query(`SELECT * FROM packer.shipments WHERE ${sp.lot} IN ${inList([...packerLots].flatMap(spellings))}`, qctx("packer shipments of affected lots"));
+    const ships = await ctx.data.query(`SELECT * FROM packer.shipments WHERE ${sp.lot} IN ${inList([...packerLots].flatMap(spellings))} ORDER BY ${sp.pk}`, qctx("packer shipments of affected lots"));
     const toUs = ships.rows.filter((r) => String(r.customer_id) === DISTRIBUTOR_ID);
     for (const r of ships.rows.filter((x) => String(x.customer_id) !== DISTRIBUTOR_ID)) {
       graph.external.push({ firm: String(r.customer_id), lot: canonicalLot(String(r[sp.lot!])), evidence: evidence(ships, "packer.shipments", sp.pk, r) });
@@ -118,12 +118,12 @@ export async function traceForward(ctx: AgentContext, implicated: string[], comm
     const wr = map["wms.receiving"];
     const rcv = toUs.length
       ? await ctx.data.query(
-          `SELECT * FROM wms.receiving WHERE bol_no IN ${inList(toUs.map((r) => String(r.bol_no)))} OR ${wr.lot} IN ${inList([...packerLots].flatMap(spellings))}`,
+          `SELECT * FROM wms.receiving WHERE bol_no IN ${inList(toUs.map((r) => String(r.bol_no)))} OR ${wr.lot} IN ${inList([...packerLots].flatMap(spellings))} ORDER BY ${wr.pk}`,
           qctx("distributor receiving records for those loads"),
         )
       : null;
     const wl = map["wms.lpn"];
-    const lpns = await ctx.data.query(`SELECT * FROM wms.lpn WHERE ${wl.lot} IN ${inList([...packerLots].flatMap(spellings))}`, qctx("distributor pallets carrying affected lots"));
+    const lpns = await ctx.data.query(`SELECT * FROM wms.lpn WHERE ${wl.lot} IN ${inList([...packerLots].flatMap(spellings))} ORDER BY ${wl.pk}`, qctx("distributor pallets carrying affected lots"));
     const usedLpn = new Set<string>();
     for (const s of toUs) {
       const lot = canonicalLot(String(s[sp.lot!]));
@@ -162,10 +162,10 @@ export async function traceForward(ctx: AgentContext, implicated: string[], comm
   const direct = implicated.filter((l) => !l.startsWith("PK") && !l.startsWith("GR"));
   if (direct.length) {
     const wl = map["wms.lpn"];
-    const pallets = await ctx.data.query(`SELECT * FROM wms.lpn WHERE ${wl.lot} IN ${inList(direct.flatMap(spellings))}`, qctx("pallets of directly received lots"));
+    const pallets = await ctx.data.query(`SELECT * FROM wms.lpn WHERE ${wl.lot} IN ${inList(direct.flatMap(spellings))} ORDER BY ${wl.pk}`, qctx("pallets of directly received lots"));
     const wr = map["wms.receiving"];
     const rcv = pallets.rows.length
-      ? await ctx.data.query(`SELECT * FROM wms.receiving WHERE internal_lpn IN ${inList(pallets.rows.map((r) => String(r.internal_lpn)))}`, qctx("receiving records of those pallets"))
+      ? await ctx.data.query(`SELECT * FROM wms.receiving WHERE internal_lpn IN ${inList(pallets.rows.map((r) => String(r.internal_lpn)))} ORDER BY ${wr.pk}`, qctx("receiving records of those pallets"))
       : null;
     for (const p of pallets.rows) {
       const lot = canonicalLot(String(p[wl.lot!]));
@@ -183,7 +183,7 @@ export async function traceForward(ctx: AgentContext, implicated: string[], comm
   const allLpns = [...new Set([...lpnByLot.values()].flatMap((s) => [...s]))];
   if (allLpns.length) {
     const ss = map["wms.store_shipments"];
-    const lines = await ctx.data.query(`SELECT * FROM wms.store_shipments WHERE ${ss.lot} IN ${inList(allLpns)}`, qctx("store deliveries from affected pallets"));
+    const lines = await ctx.data.query(`SELECT * FROM wms.store_shipments WHERE ${ss.lot} IN ${inList(allLpns)} ORDER BY ${ss.pk}`, qctx("store deliveries from affected pallets"));
     const lotOfLpn = new Map<string, string>();
     for (const [lot, set] of lpnByLot) for (const l of set) lotOfLpn.set(l, lot);
     const stores = [...new Set(lines.rows.map((r) => String(r[ss.location!])))];
@@ -191,7 +191,7 @@ export async function traceForward(ctx: AgentContext, implicated: string[], comm
     const rr = map["retail.receipts"];
     const retail = stores.length
       ? await ctx.data.query(
-          `SELECT * FROM retail.receipts WHERE store_id IN ${inList(stores)} AND ${rr.date} >= ${q(dates[0])} AND ${rr.date} <= ${q(addDays(dates.at(-1)!, 4))}`,
+          `SELECT * FROM retail.receipts WHERE store_id IN ${inList(stores)} AND ${rr.date} >= ${q(dates[0])} AND ${rr.date} <= ${q(addDays(dates.at(-1)!, 4))} ORDER BY ${rr.pk}`,
           qctx("stores' own receiving in the delivery window"),
         )
       : null;

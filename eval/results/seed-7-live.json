@@ -1,0 +1,172 @@
+{
+  "summary": {
+    "seed": 7,
+    "models": "live through Nightshift",
+    "runs": 7,
+    "affected": 97,
+    "caught": 97,
+    "missed": 0,
+    "falseClear": 0,
+    "pulledUnaffected": 0,
+    "provableClears": 20,
+    "provableClearTargets": 30
+  },
+  "rows": [
+    {
+      "noticeId": "N1",
+      "affected": 19,
+      "caught": 19,
+      "missed": [],
+      "falseClear": [],
+      "pulledUnaffected": [],
+      "provableClears": 6,
+      "clearsMade": 7,
+      "holds": 0,
+      "pulls": 19,
+      "modelCalls": 11,
+      "fallbacks": 0,
+      "ms": 81693,
+      "panels": 0,
+      "retries": 0,
+      "refused": 1,
+      "models": [
+        "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "nvidia/nemotron-3.5-bolt-e4b"
+      ]
+    },
+    {
+      "noticeId": "N2",
+      "affected": 16,
+      "caught": 16,
+      "missed": [],
+      "falseClear": [],
+      "pulledUnaffected": [],
+      "provableClears": 0,
+      "clearsMade": 0,
+      "holds": 0,
+      "pulls": 16,
+      "modelCalls": 17,
+      "fallbacks": 2,
+      "ms": 60986,
+      "panels": 1,
+      "retries": 2,
+      "refused": 0,
+      "models": [
+        "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "meterless/vision",
+        "nvidia/nemotron-3.5-bolt-e4b",
+        "nvidia/nemotron-3-ultra-550b-a55b"
+      ]
+    },
+    {
+      "noticeId": "N3",
+      "affected": 14,
+      "caught": 14,
+      "missed": [],
+      "falseClear": [],
+      "pulledUnaffected": [],
+      "provableClears": 0,
+      "clearsMade": 0,
+      "holds": 10,
+      "pulls": 14,
+      "modelCalls": 12,
+      "fallbacks": 0,
+      "ms": 90093,
+      "panels": 0,
+      "retries": 2,
+      "refused": 0,
+      "models": [
+        "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "nvidia/nemotron-3.5-bolt-e4b"
+      ]
+    },
+    {
+      "noticeId": "N4",
+      "affected": 11,
+      "caught": 11,
+      "missed": [],
+      "falseClear": [],
+      "pulledUnaffected": [],
+      "provableClears": 0,
+      "clearsMade": 4,
+      "holds": 0,
+      "pulls": 11,
+      "modelCalls": 14,
+      "fallbacks": 0,
+      "ms": 75581,
+      "panels": 1,
+      "retries": 2,
+      "refused": 0,
+      "models": [
+        "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "nvidia/nemotron-3.5-bolt-e4b",
+        "nvidia/nemotron-3-ultra-550b-a55b"
+      ]
+    },
+    {
+      "noticeId": "N5",
+      "affected": 16,
+      "caught": 16,
+      "missed": [],
+      "falseClear": [],
+      "pulledUnaffected": [],
+      "provableClears": 1,
+      "clearsMade": 1,
+      "holds": 0,
+      "pulls": 16,
+      "modelCalls": 9,
+      "fallbacks": 0,
+      "ms": 68084,
+      "panels": 0,
+      "retries": 0,
+      "refused": 0,
+      "models": [
+        "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "nvidia/nemotron-3.5-bolt-e4b"
+      ]
+    },
+    {
+      "noticeId": "N6",
+      "affected": 21,
+      "caught": 21,
+      "missed": [],
+      "falseClear": [],
+      "pulledUnaffected": [],
+      "provableClears": 13,
+      "clearsMade": 13,
+      "holds": 0,
+      "pulls": 21,
+      "modelCalls": 16,
+      "fallbacks": 4,
+      "ms": 139788,
+      "panels": 0,
+      "retries": 0,
+      "refused": 0,
+      "models": [
+        "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "nvidia/nemotron-3.5-bolt-e4b"
+      ]
+    },
+    {
+      "noticeId": "N7",
+      "affected": 0,
+      "caught": 0,
+      "missed": [],
+      "falseClear": [],
+      "pulledUnaffected": [],
+      "provableClears": 0,
+      "clearsMade": 0,
+      "holds": 0,
+      "pulls": 0,
+      "modelCalls": 4,
+      "fallbacks": 2,
+      "ms": 198,
+      "panels": 0,
+      "retries": 0,
+      "refused": 0,
+      "models": [
+        "nvidia/nemotron-3.5-lightning-30b-a3b"
+      ]
+    }
+  ]
+}

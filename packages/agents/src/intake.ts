@@ -24,8 +24,11 @@ const Extracted = z.object({
   dateFrom: z.string().nullable(),
   dateTo: z.string().nullable(),
   hazard: z.string().nullable(),
-  recallClass: z.enum(["I", "II", "III"]).nullable(),
-  uncertainty: z.array(z.string()),
+  recallClass: z.preprocess(
+    (v) => (typeof v === "string" ? v.replace(/^class\s+/i, "").trim().toUpperCase() || null : v),
+    z.enum(["I", "II", "III"]).nullable(),
+  ),
+  uncertainty: z.preprocess((v) => v ?? [], z.array(z.string())),
 });
 type Extracted = z.infer<typeof Extracted>;
 

@@ -72,7 +72,7 @@ export async function mapSources(ctx: AgentContext): Promise<{ map: SourceMap; q
   const res = await ctx.models.chat({
     agent: "SourceMapperAgent", lane: "reason", purpose: "map catalog to tracking events",
     system: SYSTEM, user: JSON.stringify({ catalog, knownQuirks: quirks }),
-    schema: Mapping, ruleFallback: () => ({ tables: Object.values(known), quirks: [] }), targetAgent: "TracerAgent",
+    schema: Mapping, ruleFallback: () => ({ tables: Object.values(known), quirks: [] }), targetAgent: "TracerAgent", maxTokens: 3500,
   });
 
   // A proposed role is only accepted if every column it names exists; otherwise the known mapping stands.

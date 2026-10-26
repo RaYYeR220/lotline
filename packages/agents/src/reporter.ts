@@ -27,7 +27,7 @@ export async function report(ctx: AgentContext, scope: RecallScope, graph: Trace
 
   const drafts: DraftNotice[] = [];
   for (const [to, list] of recipients) {
-    const lots = [...new Set(list.flatMap((a) => a.lots))];
+    const lots = [...new Set(list.flatMap((a) => a.lots))].sort();
     const lines = list.map((a) => `${a.locationName}: ${a.kind}`).join("\n");
     const external = to.startsWith("firm:") ? graph.external.filter((e) => `firm:${e.firm}` === to) : [];
     const fallback = {
