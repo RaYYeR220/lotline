@@ -44,18 +44,24 @@ export class ZetarisClient implements DataLayer {
     return this.run(sql, ctx, "zetaris.write_back");
   }
 
+  /** Registered datasources (JDBC) and Lightning databases (files, REST), with their tables. */
   async listTables(ctx: QueryContext): Promise<{ source: string; table: string }[]> {
     const out: { source: string; table: string }[] = [];
-    const dbs = await this.query("SHOW LIGHTNING DATABASES", ctx);
-    for (const row of dbs.rows) {
-      const db = Object.values(row)[0];
-      if (!db) continue;
-      const tables = await this.query(`SHOW TABLES IN ${db}`, ctx);
-      for (const t of tables.rows) {
-        const name = t.tableName ?? t.table_name ?? t.name ?? Object.values(t).find((v) => v && v !== db) ?? null;
-        if (name) out.push({ source: db, table: name });
+    const first = (row: Record<string, string | null>, keys: string[]) => keys.map((k) => row[k]).find((v) => v) ?? Object.values(row).find((v) => v) ?? null;
+    const collect = async (listSql: string, tablesSql: (name: string) => string) => {
+      const owners = await this.query(listSql, ctx).catch(() => null);
+      for (const row of owners?.rows ?? []) {
+        const owner = first(row, ["name", "datasource", "datasourceName", "database", "databaseName", "namespace"]);
+        if (!owner) continue;
+        const tables = await this.query(tablesSql(owner), ctx).catch(() => null);
+        for (const t of tables?.rows ?? []) {
+          const name = first(t, ["tableName", "table_name", "name", "table"]);
+          if (name && name !== owner) out.push({ source: owner, table: String(name).split(".").at(-1)! });
+        }
       }
-    }
+    };
+    await collect("SHOW DATASOURCES", (ds) => `SHOW DATASOURCE TABLES ${ds}`);
+    await collect("SHOW LIGHTNING DATABASES", (db) => `SHOW LIGHTNING TABLES ${db}`);
     return out;
   }
 
