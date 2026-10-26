@@ -1,0 +1,35 @@
+{
+  "runId": "run-20261026171157",
+  "status": "complete",
+  "mode": "sample",
+  "scope": {
+    "noticeId": "N-439f17e745",
+    "commodity": "sprouts",
+    "productText": "Enoki mushrooms, 200 g (7.05 oz) clear plastic packages, product of Korea",
+    "firm": "Golden Crest Mushroom Co., Los Angeles, CA",
+    "lotCodes": [
+      "EN0826A",
+      "EN0826B"
+    ],
+    "hazard": "Listeria monocytogenes",
+    "recallClass": "I",
+    "uncertainty": [
+      "commodity not recognised in the notice"
+    ]
+  },
+  "links": [],
+  "actions": [],
+  "spreadsheet": {
+    "csv": "",
+    "rows": 0
+  },
+  "drafts": [],
+  "stats": {
+    "queries": 16,
+    "modelCalls": 2,
+    "races": 0,
+    "retries": 0,
+    "escalations": 0,
+    "ms": 71
+  }
+}

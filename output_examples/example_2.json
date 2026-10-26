@@ -1,0 +1,1127 @@
+{
+  "runId": "run-20261026171055",
+  "status": "complete",
+  "mode": "sample",
+  "scope": {
+    "noticeId": "N-da03460479",
+    "commodity": "cucumbers",
+    "productText": "fresh whole slicer cucumbers, 24-count cartons",
+    "firm": "Halvard Cooling & Pack Co.",
+    "lotCodes": [
+      "PK260908004",
+      "PK260909002"
+    ],
+    "dateFrom": "2026-09-08",
+    "dateTo": "2026-09-09",
+    "hazard": "Salmonella",
+    "recallClass": "I",
+    "uncertainty": []
+  },
+  "links": [
+    {
+      "id": "LK-5a2fc7d13e",
+      "kind": "received-as",
+      "from": "lot:PK260908004",
+      "to": "lpn:L32611596",
+      "at": "2026-09-08",
+      "quantity": 113,
+      "evidence": [
+        {
+          "source": "packer",
+          "table": "shipments",
+          "rowKey": "SHP-42804",
+          "queryId": "7a0ea1f3-5d16-4ab5-8313-db1c4e71df8f",
+          "sql": "SELECT * FROM packer.shipments WHERE output_lot IN ('PK260908004', 'PK-260908-004', 'PK-260908-4', 'PK260909002', 'PK-260909-002', 'PK-260909-2') ORDER BY ship_id",
+          "fields": {
+            "ship_id": "SHP-42804",
+            "output_lot": "PK260908004",
+            "customer_id": "NGP",
+            "ship_date": "2026-09-08",
+            "qty_cases": "113",
+            "bol_no": "OCF-26-47805",
+            "carrier_id": "OCF"
+          }
+        },
+        {
+          "source": "wms",
+          "table": "lpn",
+          "rowKey": "L32611596",
+          "queryId": "63982ca6-08ae-4f78-96e5-faf91ee097c4",
+          "sql": "SELECT * FROM wms.lpn WHERE vendor_lot IN ('PK260908004', 'PK-260908-004', 'PK-260908-4', 'PK260909002', 'PK-260909-002', 'PK-260909-2') ORDER BY internal_lpn",
+          "fields": {
+            "internal_lpn": "L32611596",
+            "vendor_lot": "PK-260908-004",
+            "commodity": "cucumbers",
+            "product_desc": "CUCUMBER SELECT 24CT"
+          }
+        },
+        {
+          "source": "carrier",
+          "table": "bol_index",
+          "rowKey": "OCF-26-47805",
+          "queryId": "52dd617f-9992-411f-abde-c1503eba9456",
+          "sql": "SELECT * FROM carrier.bol_index WHERE bol_no = 'OCF-26-47805'",
+          "fields": {
+            "bol_no": "OCF-26-47805",
+            "carrier_id": "OCF",
+            "scan_key": "bol/OCF-26-47805.png",
+            "ship_date": "2026-09-08",
+            "origin": "Halvard Cooling & Pack Co., Salinas CA",
+            "consignee": "Northgate Produce DC, West Sacramento CA"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.9,
+      "notes": [
+        "no receiving record: only the pallet record ties this lot to the pallet",
+        "receipt proven by the stamped bill of lading"
+      ]
+    },
+    {
+      "id": "LK-9268cd3592",
+      "kind": "received-as",
+      "from": "lot:PK260909002",
+      "to": "lpn:L32611610",
+      "at": "2026-09-09",
+      "quantity": 114,
+      "evidence": [
+        {
+          "source": "packer",
+          "table": "shipments",
+          "rowKey": "SHP-42809",
+          "queryId": "7a0ea1f3-5d16-4ab5-8313-db1c4e71df8f",
+          "sql": "SELECT * FROM packer.shipments WHERE output_lot IN ('PK260908004', 'PK-260908-004', 'PK-260908-4', 'PK260909002', 'PK-260909-002', 'PK-260909-2') ORDER BY ship_id",
+          "fields": {
+            "ship_id": "SHP-42809",
+            "output_lot": "PK260909002",
+            "customer_id": "NGP",
+            "ship_date": "2026-09-09",
+            "qty_cases": "114",
+            "bol_no": "RRL210818",
+            "carrier_id": "RRL"
+          }
+        },
+        {
+          "source": "wms",
+          "table": "receiving",
+          "rowKey": "RCV-454872",
+          "queryId": "2ac42ca0-c398-4e8c-8ecc-f21ab4741367",
+          "sql": "SELECT * FROM wms.receiving WHERE bol_no IN ('OCF-26-47805', 'RRL210818') OR vendor_lot IN ('PK260908004', 'PK-260908-004', 'PK-260908-4', 'PK260909002', 'PK-260909-002', 'PK-260909-2') ORDER BY rcv_id",
+          "fields": {
+            "rcv_id": "RCV-454872",
+            "vendor_id": "PKR01",
+            "vendor_lot": "PK-260909-002",
+            "internal_lpn": "L32611610",
+            "received_at": "2026-09-09 21:53:00",
+            "qty_cases": "114",
+            "bol_no": "RRL210818",
+            "notes": "pallet tag missing, relabeled"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.95,
+      "notes": []
+    },
+    {
+      "id": "LK-408eba6653",
+      "kind": "shipped-to",
+      "from": "lpn:L32611596",
+      "to": "loc:ST21",
+      "at": "2026-09-10",
+      "quantity": 9,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1639521",
+          "queryId": "51546232-9a6a-4809-b6c5-6eb5a6573241",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611596', 'L32611610') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1639521",
+            "internal_lpn": "L32611596",
+            "location_id": "ST21",
+            "ship_date": "2026-09-10",
+            "qty_cases": "9",
+            "route_id": "R0910-CBK1"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "CBK-275119",
+          "queryId": "14c09074-e4c4-46c7-aa7d-cb6633cb3cad",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST21', 'ST23', 'ST20', 'ST18', 'ST19', 'FS01', 'ST11', 'ST25', 'ST05', 'ST09', 'ST08', 'ST31', 'ST04', 'ST26', 'ST03', 'ST06') AND received_at >= '2026-09-10' AND received_at <= '2026-09-15' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "CBK-275119",
+            "chain_id": "CBK",
+            "store_id": "ST21",
+            "store_name": "Corner Basket #15 Hayward",
+            "supplier_ref_lot": "CBK:PK26090800",
+            "received_at": "2026-09-10 11:23:00",
+            "qty_cases": "20"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-944de34296",
+      "kind": "shipped-to",
+      "from": "lpn:L32611596",
+      "to": "loc:ST23",
+      "at": "2026-09-10",
+      "quantity": 15,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1639540",
+          "queryId": "51546232-9a6a-4809-b6c5-6eb5a6573241",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611596', 'L32611610') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1639540",
+            "internal_lpn": "L32611596",
+            "location_id": "ST23",
+            "ship_date": "2026-09-10",
+            "qty_cases": "15",
+            "route_id": "R0910-CBK2"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "CBK-275123",
+          "queryId": "14c09074-e4c4-46c7-aa7d-cb6633cb3cad",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST21', 'ST23', 'ST20', 'ST18', 'ST19', 'FS01', 'ST11', 'ST25', 'ST05', 'ST09', 'ST08', 'ST31', 'ST04', 'ST26', 'ST03', 'ST06') AND received_at >= '2026-09-10' AND received_at <= '2026-09-15' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "CBK-275123",
+            "chain_id": "CBK",
+            "store_id": "ST23",
+            "store_name": "Corner Basket #17 Richmond",
+            "supplier_ref_lot": "CBK:PK26090800",
+            "received_at": "2026-09-10 09:39:00",
+            "qty_cases": "15"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-4d24a6a5d1",
+      "kind": "shipped-to",
+      "from": "lpn:L32611596",
+      "to": "loc:ST20",
+      "at": "2026-09-10",
+      "quantity": 17,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1639548",
+          "queryId": "51546232-9a6a-4809-b6c5-6eb5a6573241",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611596', 'L32611610') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1639548",
+            "internal_lpn": "L32611596",
+            "location_id": "ST20",
+            "ship_date": "2026-09-10",
+            "qty_cases": "17",
+            "route_id": "R0910-CBK1"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "CBK-275127",
+          "queryId": "14c09074-e4c4-46c7-aa7d-cb6633cb3cad",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST21', 'ST23', 'ST20', 'ST18', 'ST19', 'FS01', 'ST11', 'ST25', 'ST05', 'ST09', 'ST08', 'ST31', 'ST04', 'ST26', 'ST03', 'ST06') AND received_at >= '2026-09-10' AND received_at <= '2026-09-15' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "CBK-275127",
+            "chain_id": "CBK",
+            "store_id": "ST20",
+            "store_name": "Corner Basket #14 Fremont",
+            "supplier_ref_lot": "CBK:PK26090800",
+            "received_at": "2026-09-10 08:30:00",
+            "qty_cases": "28"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-7db413034f",
+      "kind": "shipped-to",
+      "from": "lpn:L32611596",
+      "to": "loc:ST18",
+      "at": "2026-09-10",
+      "quantity": 16,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1639555",
+          "queryId": "51546232-9a6a-4809-b6c5-6eb5a6573241",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611596', 'L32611610') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1639555",
+            "internal_lpn": "L32611596",
+            "location_id": "ST18",
+            "ship_date": "2026-09-10",
+            "qty_cases": "16",
+            "route_id": "R0910-CBK1"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "CBK-275135",
+          "queryId": "14c09074-e4c4-46c7-aa7d-cb6633cb3cad",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST21', 'ST23', 'ST20', 'ST18', 'ST19', 'FS01', 'ST11', 'ST25', 'ST05', 'ST09', 'ST08', 'ST31', 'ST04', 'ST26', 'ST03', 'ST06') AND received_at >= '2026-09-10' AND received_at <= '2026-09-15' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "CBK-275135",
+            "chain_id": "CBK",
+            "store_id": "ST18",
+            "store_name": "Corner Basket #12 Oakland",
+            "supplier_ref_lot": "CBK:PK26090800",
+            "received_at": "2026-09-10 08:13:00",
+            "qty_cases": "16"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-b81d831520",
+      "kind": "shipped-to",
+      "from": "lpn:L32611596",
+      "to": "loc:ST19",
+      "at": "2026-09-10",
+      "quantity": 19,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1639565",
+          "queryId": "51546232-9a6a-4809-b6c5-6eb5a6573241",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611596', 'L32611610') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1639565",
+            "internal_lpn": "L32611596",
+            "location_id": "ST19",
+            "ship_date": "2026-09-10",
+            "qty_cases": "19",
+            "route_id": "R0910-CBK1"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "CBK-275143",
+          "queryId": "14c09074-e4c4-46c7-aa7d-cb6633cb3cad",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST21', 'ST23', 'ST20', 'ST18', 'ST19', 'FS01', 'ST11', 'ST25', 'ST05', 'ST09', 'ST08', 'ST31', 'ST04', 'ST26', 'ST03', 'ST06') AND received_at >= '2026-09-10' AND received_at <= '2026-09-15' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "CBK-275143",
+            "chain_id": "CBK",
+            "store_id": "ST19",
+            "store_name": "Corner Basket #13 Berkeley",
+            "supplier_ref_lot": "CBK:PK26090800",
+            "received_at": "2026-09-10 06:11:00",
+            "qty_cases": "19"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-07ca0e29dc",
+      "kind": "shipped-to",
+      "from": "lpn:L32611596",
+      "to": "loc:FS01",
+      "at": "2026-09-10",
+      "quantity": 18,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1639568",
+          "queryId": "51546232-9a6a-4809-b6c5-6eb5a6573241",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611596', 'L32611610') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1639568",
+            "internal_lpn": "L32611596",
+            "location_id": "FS01",
+            "ship_date": "2026-09-10",
+            "qty_cases": "18",
+            "route_id": "R0910-FS"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.9,
+      "notes": []
+    },
+    {
+      "id": "LK-da178bbb59",
+      "kind": "shipped-to",
+      "from": "lpn:L32611596",
+      "to": "loc:ST11",
+      "at": "2026-09-10",
+      "quantity": 17,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1639583",
+          "queryId": "51546232-9a6a-4809-b6c5-6eb5a6573241",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611596', 'L32611610') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1639583",
+            "internal_lpn": "L32611596",
+            "location_id": "ST11",
+            "ship_date": "2026-09-10",
+            "qty_cases": "17",
+            "route_id": "R0910-PPG1"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "PPG-590077",
+          "queryId": "14c09074-e4c4-46c7-aa7d-cb6633cb3cad",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST21', 'ST23', 'ST20', 'ST18', 'ST19', 'FS01', 'ST11', 'ST25', 'ST05', 'ST09', 'ST08', 'ST31', 'ST04', 'ST26', 'ST03', 'ST06') AND received_at >= '2026-09-10' AND received_at <= '2026-09-15' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "PPG-590077",
+            "chain_id": "PPG",
+            "store_id": "ST11",
+            "store_name": "Pine & Prairie Grocers #311 Woodland",
+            "supplier_ref_lot": "ppg:pk260908004",
+            "received_at": "2026-09-10 08:28:00",
+            "qty_cases": "17"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-2b562c8fe9",
+      "kind": "shipped-to",
+      "from": "lpn:L32611596",
+      "to": "loc:ST25",
+      "at": "2026-09-10",
+      "quantity": 2,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1639589",
+          "queryId": "51546232-9a6a-4809-b6c5-6eb5a6573241",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611596', 'L32611610') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1639589",
+            "internal_lpn": "L32611596",
+            "location_id": "ST25",
+            "ship_date": "2026-09-10",
+            "qty_cases": "2",
+            "route_id": "R0910-CBK2"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "CBK-275150",
+          "queryId": "14c09074-e4c4-46c7-aa7d-cb6633cb3cad",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST21', 'ST23', 'ST20', 'ST18', 'ST19', 'FS01', 'ST11', 'ST25', 'ST05', 'ST09', 'ST08', 'ST31', 'ST04', 'ST26', 'ST03', 'ST06') AND received_at >= '2026-09-10' AND received_at <= '2026-09-15' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "CBK-275150",
+            "chain_id": "CBK",
+            "store_id": "ST25",
+            "store_name": "Corner Basket #19 Concord",
+            "supplier_ref_lot": "CBK:PK26090800",
+            "received_at": "2026-09-10 08:10:00",
+            "qty_cases": "14"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-b2a4d3994a",
+      "kind": "shipped-to",
+      "from": "lpn:L32611610",
+      "to": "loc:ST25",
+      "at": "2026-09-10",
+      "quantity": 13,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1639590",
+          "queryId": "51546232-9a6a-4809-b6c5-6eb5a6573241",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611596', 'L32611610') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1639590",
+            "internal_lpn": "L32611610",
+            "location_id": "ST25",
+            "ship_date": "2026-09-10",
+            "qty_cases": "13",
+            "route_id": "R0910-CBK2"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "CBK-275152",
+          "queryId": "14c09074-e4c4-46c7-aa7d-cb6633cb3cad",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST21', 'ST23', 'ST20', 'ST18', 'ST19', 'FS01', 'ST11', 'ST25', 'ST05', 'ST09', 'ST08', 'ST31', 'ST04', 'ST26', 'ST03', 'ST06') AND received_at >= '2026-09-10' AND received_at <= '2026-09-15' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "CBK-275152",
+            "chain_id": "CBK",
+            "store_id": "ST25",
+            "store_name": "Corner Basket #19 Concord",
+            "supplier_ref_lot": "CBK:PK26090900",
+            "received_at": "2026-09-10 07:52:00",
+            "qty_cases": "13"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-c6e26e6b67",
+      "kind": "shipped-to",
+      "from": "lpn:L32611610",
+      "to": "loc:ST05",
+      "at": "2026-09-11",
+      "quantity": 12,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1639601",
+          "queryId": "51546232-9a6a-4809-b6c5-6eb5a6573241",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611596', 'L32611610') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1639601",
+            "internal_lpn": "L32611610",
+            "location_id": "ST05",
+            "ship_date": "2026-09-11",
+            "qty_cases": "12",
+            "route_id": "R0911-HBR2"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "HBR-662135",
+          "queryId": "14c09074-e4c4-46c7-aa7d-cb6633cb3cad",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST21', 'ST23', 'ST20', 'ST18', 'ST19', 'FS01', 'ST11', 'ST25', 'ST05', 'ST09', 'ST08', 'ST31', 'ST04', 'ST26', 'ST03', 'ST06') AND received_at >= '2026-09-10' AND received_at <= '2026-09-15' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "HBR-662135",
+            "chain_id": "HBR",
+            "store_id": "ST05",
+            "store_name": "HARBOR FOODS #205 SEASIDE",
+            "supplier_ref_lot": "HBR:PK260909002",
+            "received_at": "2026-09-11 09:50:00",
+            "qty_cases": "12"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-b94493099c",
+      "kind": "shipped-to",
+      "from": "lpn:L32611610",
+      "to": "loc:ST09",
+      "at": "2026-09-11",
+      "quantity": 11,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1639609",
+          "queryId": "51546232-9a6a-4809-b6c5-6eb5a6573241",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611596', 'L32611610') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1639609",
+            "internal_lpn": "L32611610",
+            "location_id": "ST09",
+            "ship_date": "2026-09-11",
+            "qty_cases": "11",
+            "route_id": "R0911-HBR3"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "HBR-662140",
+          "queryId": "14c09074-e4c4-46c7-aa7d-cb6633cb3cad",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST21', 'ST23', 'ST20', 'ST18', 'ST19', 'FS01', 'ST11', 'ST25', 'ST05', 'ST09', 'ST08', 'ST31', 'ST04', 'ST26', 'ST03', 'ST06') AND received_at >= '2026-09-10' AND received_at <= '2026-09-15' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "HBR-662140",
+            "chain_id": "HBR",
+            "store_id": "ST09",
+            "store_name": "HARBOR FOODS #209 CARMEL",
+            "supplier_ref_lot": "HBR:PK260909002",
+            "received_at": "2026-09-11 11:59:00",
+            "qty_cases": "11"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-34930b0132",
+      "kind": "shipped-to",
+      "from": "lpn:L32611610",
+      "to": "loc:ST08",
+      "at": "2026-09-11",
+      "quantity": 19,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1639616",
+          "queryId": "51546232-9a6a-4809-b6c5-6eb5a6573241",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611596', 'L32611610') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1639616",
+            "internal_lpn": "L32611610",
+            "location_id": "ST08",
+            "ship_date": "2026-09-11",
+            "qty_cases": "19",
+            "route_id": "R0911-HBR2"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "HBR-662145",
+          "queryId": "14c09074-e4c4-46c7-aa7d-cb6633cb3cad",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST21', 'ST23', 'ST20', 'ST18', 'ST19', 'FS01', 'ST11', 'ST25', 'ST05', 'ST09', 'ST08', 'ST31', 'ST04', 'ST26', 'ST03', 'ST06') AND received_at >= '2026-09-10' AND received_at <= '2026-09-15' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "HBR-662145",
+            "chain_id": "HBR",
+            "store_id": "ST08",
+            "store_name": "HARBOR FOODS #208 MARINA",
+            "supplier_ref_lot": "HBR:PK260909002",
+            "received_at": "2026-09-11 08:06:00",
+            "qty_cases": "19"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-c9e62ee150",
+      "kind": "shipped-to",
+      "from": "lpn:L32611610",
+      "to": "loc:ST31",
+      "at": "2026-09-11",
+      "quantity": 15,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1639624",
+          "queryId": "51546232-9a6a-4809-b6c5-6eb5a6573241",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611596', 'L32611610') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1639624",
+            "internal_lpn": "L32611610",
+            "location_id": "ST31",
+            "ship_date": "2026-09-11",
+            "qty_cases": "15",
+            "route_id": "R0911-LKV2"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "LKV-486480",
+          "queryId": "14c09074-e4c4-46c7-aa7d-cb6633cb3cad",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST21', 'ST23', 'ST20', 'ST18', 'ST19', 'FS01', 'ST11', 'ST25', 'ST05', 'ST09', 'ST08', 'ST31', 'ST04', 'ST26', 'ST03', 'ST06') AND received_at >= '2026-09-10' AND received_at <= '2026-09-15' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "LKV-486480",
+            "chain_id": "LKV",
+            "store_id": "ST31",
+            "store_name": "Lakeview Markets #506 Minden",
+            "supplier_ref_lot": "LKV:PK260909002",
+            "received_at": "2026-09-11 09:15:00",
+            "qty_cases": "15"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-db920ac89a",
+      "kind": "shipped-to",
+      "from": "lpn:L32611610",
+      "to": "loc:ST04",
+      "at": "2026-09-11",
+      "quantity": 15,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1639627",
+          "queryId": "51546232-9a6a-4809-b6c5-6eb5a6573241",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611596', 'L32611610') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1639627",
+            "internal_lpn": "L32611610",
+            "location_id": "ST04",
+            "ship_date": "2026-09-11",
+            "qty_cases": "15",
+            "route_id": "R0911-HBR1"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "HBR-662150",
+          "queryId": "14c09074-e4c4-46c7-aa7d-cb6633cb3cad",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST21', 'ST23', 'ST20', 'ST18', 'ST19', 'FS01', 'ST11', 'ST25', 'ST05', 'ST09', 'ST08', 'ST31', 'ST04', 'ST26', 'ST03', 'ST06') AND received_at >= '2026-09-10' AND received_at <= '2026-09-15' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "HBR-662150",
+            "chain_id": "HBR",
+            "store_id": "ST04",
+            "store_name": "HARBOR FOODS #204 SALINAS",
+            "supplier_ref_lot": "HBR:PK260909002",
+            "received_at": "2026-09-11 06:51:00",
+            "qty_cases": "15"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-7a53195f5d",
+      "kind": "shipped-to",
+      "from": "lpn:L32611610",
+      "to": "loc:ST26",
+      "at": "2026-09-11",
+      "quantity": 13,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1639639",
+          "queryId": "51546232-9a6a-4809-b6c5-6eb5a6573241",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611596', 'L32611610') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1639639",
+            "internal_lpn": "L32611610",
+            "location_id": "ST26",
+            "ship_date": "2026-09-11",
+            "qty_cases": "13",
+            "route_id": "R0911-LKV1"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "LKV-486490",
+          "queryId": "14c09074-e4c4-46c7-aa7d-cb6633cb3cad",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST21', 'ST23', 'ST20', 'ST18', 'ST19', 'FS01', 'ST11', 'ST25', 'ST05', 'ST09', 'ST08', 'ST31', 'ST04', 'ST26', 'ST03', 'ST06') AND received_at >= '2026-09-10' AND received_at <= '2026-09-15' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "LKV-486490",
+            "chain_id": "LKV",
+            "store_id": "ST26",
+            "store_name": "Lakeview Markets #501 Reno",
+            "supplier_ref_lot": "LKV:PK260909002",
+            "received_at": "2026-09-11 09:55:00",
+            "qty_cases": "13"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-5ed7290709",
+      "kind": "shipped-to",
+      "from": "lpn:L32611610",
+      "to": "loc:ST03",
+      "at": "2026-09-11",
+      "quantity": 10,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1639641",
+          "queryId": "51546232-9a6a-4809-b6c5-6eb5a6573241",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611596', 'L32611610') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1639641",
+            "internal_lpn": "L32611610",
+            "location_id": "ST03",
+            "ship_date": "2026-09-11",
+            "qty_cases": "10",
+            "route_id": "R0911-HBR1"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "HBR-662156",
+          "queryId": "14c09074-e4c4-46c7-aa7d-cb6633cb3cad",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST21', 'ST23', 'ST20', 'ST18', 'ST19', 'FS01', 'ST11', 'ST25', 'ST05', 'ST09', 'ST08', 'ST31', 'ST04', 'ST26', 'ST03', 'ST06') AND received_at >= '2026-09-10' AND received_at <= '2026-09-15' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "HBR-662156",
+            "chain_id": "HBR",
+            "store_id": "ST03",
+            "store_name": "HARBOR FOODS #203 WATSONVILLE",
+            "supplier_ref_lot": "HBR:PK260909002",
+            "received_at": "2026-09-11 10:34:00",
+            "qty_cases": "10"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-f375af6501",
+      "kind": "shipped-to",
+      "from": "lpn:L32611610",
+      "to": "loc:ST06",
+      "at": "2026-09-11",
+      "quantity": 6,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1639645",
+          "queryId": "51546232-9a6a-4809-b6c5-6eb5a6573241",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611596', 'L32611610') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1639645",
+            "internal_lpn": "L32611610",
+            "location_id": "ST06",
+            "ship_date": "2026-09-11",
+            "qty_cases": "6",
+            "route_id": "R0911-HBR2"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "HBR-662160",
+          "queryId": "14c09074-e4c4-46c7-aa7d-cb6633cb3cad",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST21', 'ST23', 'ST20', 'ST18', 'ST19', 'FS01', 'ST11', 'ST25', 'ST05', 'ST09', 'ST08', 'ST31', 'ST04', 'ST26', 'ST03', 'ST06') AND received_at >= '2026-09-10' AND received_at <= '2026-09-15' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "HBR-662160",
+            "chain_id": "HBR",
+            "store_id": "ST06",
+            "store_name": "HARBOR FOODS #206 GILROY",
+            "supplier_ref_lot": "HBR:PK260909002",
+            "received_at": "2026-09-11 11:16:00",
+            "qty_cases": "6"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    }
+  ],
+  "actions": [
+    {
+      "locationId": "FS01",
+      "locationName": "Meridian Hospital Nutrition Services",
+      "kind": "PULL",
+      "lots": [
+        "L32611596"
+      ],
+      "rationale": "Received one proven delivery of affected product via LPN L32611596.",
+      "linkIds": [
+        "LK-07ca0e29dc"
+      ],
+      "contractId": "lc_01M5WK3683CBF9MJSFY5R8J4S5",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST03",
+      "locationName": "Harbor Foods #203 Watsonville",
+      "kind": "PULL",
+      "lots": [
+        "L32611610"
+      ],
+      "rationale": "Received one proven delivery of affected product via LPN L32611610.",
+      "linkIds": [
+        "LK-5ed7290709"
+      ],
+      "contractId": "lc_01M5WK368433X15DS0CD3KZC3Z",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST04",
+      "locationName": "Harbor Foods #204 Salinas",
+      "kind": "PULL",
+      "lots": [
+        "L32611610"
+      ],
+      "rationale": "Received one proven delivery of affected product via LPN L32611610.",
+      "linkIds": [
+        "LK-db920ac89a"
+      ],
+      "contractId": "lc_01M5WK368433X15DS0CD3KZC40",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST05",
+      "locationName": "Harbor Foods #205 Seaside",
+      "kind": "PULL",
+      "lots": [
+        "L32611610"
+      ],
+      "rationale": "Received one proven delivery of affected product via LPN L32611610.",
+      "linkIds": [
+        "LK-c6e26e6b67"
+      ],
+      "contractId": "lc_01M5WK3685PYHX049RZZ1YPA5B",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST06",
+      "locationName": "Harbor Foods #206 Gilroy",
+      "kind": "PULL",
+      "lots": [
+        "L32611610"
+      ],
+      "rationale": "Received one proven delivery of affected product via LPN L32611610.",
+      "linkIds": [
+        "LK-f375af6501"
+      ],
+      "contractId": "lc_01M5WK3685PYHX049RZZ1YPA5C",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST08",
+      "locationName": "Harbor Foods #208 Marina",
+      "kind": "PULL",
+      "lots": [
+        "L32611610"
+      ],
+      "rationale": "Received one proven delivery of affected product via LPN L32611610.",
+      "linkIds": [
+        "LK-34930b0132"
+      ],
+      "contractId": "lc_01M5WK3686YJSCSEJ75NHCAM1K",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST09",
+      "locationName": "Harbor Foods #209 Carmel",
+      "kind": "PULL",
+      "lots": [
+        "L32611610"
+      ],
+      "rationale": "Received one proven delivery of affected product via LPN L32611610.",
+      "linkIds": [
+        "LK-b94493099c"
+      ],
+      "contractId": "lc_01M5WK3686YJSCSEJ75NHCAM1M",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST11",
+      "locationName": "Pine & Prairie Grocers #311 Woodland",
+      "kind": "PULL",
+      "lots": [
+        "L32611596"
+      ],
+      "rationale": "Received one proven delivery of affected product via LPN L32611596.",
+      "linkIds": [
+        "LK-da178bbb59"
+      ],
+      "contractId": "lc_01M5WK3687BDB70H1KX5V264GR",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST18",
+      "locationName": "Corner Basket #12 Oakland",
+      "kind": "PULL",
+      "lots": [
+        "L32611596"
+      ],
+      "rationale": "Received one proven delivery of affected product via LPN L32611596.",
+      "linkIds": [
+        "LK-7db413034f"
+      ],
+      "contractId": "lc_01M5WK3687BDB70H1KX5V264GS",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST19",
+      "locationName": "Corner Basket #13 Berkeley",
+      "kind": "PULL",
+      "lots": [
+        "L32611596"
+      ],
+      "rationale": "Received one proven delivery of affected product via LPN L32611596.",
+      "linkIds": [
+        "LK-b81d831520"
+      ],
+      "contractId": "lc_01M5WK3687BDB70H1KX5V264GT",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST20",
+      "locationName": "Corner Basket #14 Fremont",
+      "kind": "PULL",
+      "lots": [
+        "L32611596"
+      ],
+      "rationale": "Received one proven delivery of affected product via LPN L32611596.",
+      "linkIds": [
+        "LK-4d24a6a5d1"
+      ],
+      "contractId": "lc_01M5WK3688NRV081CPVNSGPTMS",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST21",
+      "locationName": "Corner Basket #15 Hayward",
+      "kind": "PULL",
+      "lots": [
+        "L32611596"
+      ],
+      "rationale": "Received one proven delivery of affected product via LPN L32611596.",
+      "linkIds": [
+        "LK-408eba6653"
+      ],
+      "contractId": "lc_01M5WK3688NRV081CPVNSGPTMT",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST23",
+      "locationName": "Corner Basket #17 Richmond",
+      "kind": "PULL",
+      "lots": [
+        "L32611596"
+      ],
+      "rationale": "Received one proven delivery of affected product via LPN L32611596.",
+      "linkIds": [
+        "LK-944de34296"
+      ],
+      "contractId": "lc_01M5WK3688NRV081CPVNSGPTMV",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST25",
+      "locationName": "Corner Basket #19 Concord",
+      "kind": "PULL",
+      "lots": [
+        "L32611596",
+        "L32611610"
+      ],
+      "rationale": "Received two proven deliveries of affected product via LPNs L32611596 and L32611610.",
+      "linkIds": [
+        "LK-2b562c8fe9",
+        "LK-b2a4d3994a"
+      ],
+      "contractId": "lc_01M5WK3689XQWSNA8A1SAB09HV",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST26",
+      "locationName": "Lakeview Markets #501 Reno",
+      "kind": "PULL",
+      "lots": [
+        "L32611610"
+      ],
+      "rationale": "Received one proven delivery of affected product via LPN L32611610.",
+      "linkIds": [
+        "LK-7a53195f5d"
+      ],
+      "contractId": "lc_01M5WK3689XQWSNA8A1SAB09HW",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST31",
+      "locationName": "Lakeview Markets #506 Minden",
+      "kind": "PULL",
+      "lots": [
+        "L32611610"
+      ],
+      "rationale": "Received one proven delivery of affected product via LPN L32611610.",
+      "linkIds": [
+        "LK-c9e62ee150"
+      ],
+      "contractId": "lc_01M5WK3689XQWSNA8A1SAB09HX",
+      "approval": "pending"
+    }
+  ],
+  "spreadsheet": {
+    "csv": "traceability_lot_code,product_description,quantity,unit,cte,event_date,location_description,location_id,reference_document_type,reference_document_number,source_system,evidence_query_id\nL32611596,\"fresh whole slicer cucumbers, 24-count cartons\",9,cases,shipping,2026-09-10,ST21,ST21,route manifest,R0910-CBK1,wms.store_shipments,51546232-9a6a-4809-b6c5-6eb5a6573241\nL32611596,\"fresh whole slicer cucumbers, 24-count cartons\",15,cases,shipping,2026-09-10,ST23,ST23,route manifest,R0910-CBK2,wms.store_shipments,51546232-9a6a-4809-b6c5-6eb5a6573241\nL32611596,\"fresh whole slicer cucumbers, 24-count cartons\",17,cases,shipping,2026-09-10,ST20,ST20,route manifest,R0910-CBK1,wms.store_shipments,51546232-9a6a-4809-b6c5-6eb5a6573241\nL32611596,\"fresh whole slicer cucumbers, 24-count cartons\",16,cases,shipping,2026-09-10,ST18,ST18,route manifest,R0910-CBK1,wms.store_shipments,51546232-9a6a-4809-b6c5-6eb5a6573241\nL32611596,\"fresh whole slicer cucumbers, 24-count cartons\",19,cases,shipping,2026-09-10,ST19,ST19,route manifest,R0910-CBK1,wms.store_shipments,51546232-9a6a-4809-b6c5-6eb5a6573241\nL32611596,\"fresh whole slicer cucumbers, 24-count cartons\",18,cases,shipping,2026-09-10,FS01,FS01,route manifest,R0910-FS,wms.store_shipments,51546232-9a6a-4809-b6c5-6eb5a6573241\nL32611596,\"fresh whole slicer cucumbers, 24-count cartons\",17,cases,shipping,2026-09-10,ST11,ST11,route manifest,R0910-PPG1,wms.store_shipments,51546232-9a6a-4809-b6c5-6eb5a6573241\nL32611596,\"fresh whole slicer cucumbers, 24-count cartons\",2,cases,shipping,2026-09-10,ST25,ST25,route manifest,R0910-CBK2,wms.store_shipments,51546232-9a6a-4809-b6c5-6eb5a6573241\nL32611610,\"fresh whole slicer cucumbers, 24-count cartons\",13,cases,shipping,2026-09-10,ST25,ST25,route manifest,R0910-CBK2,wms.store_shipments,51546232-9a6a-4809-b6c5-6eb5a6573241\nL32611610,\"fresh whole slicer cucumbers, 24-count cartons\",12,cases,shipping,2026-09-11,ST05,ST05,route manifest,R0911-HBR2,wms.store_shipments,51546232-9a6a-4809-b6c5-6eb5a6573241\nL32611610,\"fresh whole slicer cucumbers, 24-count cartons\",11,cases,shipping,2026-09-11,ST09,ST09,route manifest,R0911-HBR3,wms.store_shipments,51546232-9a6a-4809-b6c5-6eb5a6573241\nL32611610,\"fresh whole slicer cucumbers, 24-count cartons\",19,cases,shipping,2026-09-11,ST08,ST08,route manifest,R0911-HBR2,wms.store_shipments,51546232-9a6a-4809-b6c5-6eb5a6573241\nL32611610,\"fresh whole slicer cucumbers, 24-count cartons\",15,cases,shipping,2026-09-11,ST31,ST31,route manifest,R0911-LKV2,wms.store_shipments,51546232-9a6a-4809-b6c5-6eb5a6573241\nL32611610,\"fresh whole slicer cucumbers, 24-count cartons\",15,cases,shipping,2026-09-11,ST04,ST04,route manifest,R0911-HBR1,wms.store_shipments,51546232-9a6a-4809-b6c5-6eb5a6573241\nL32611610,\"fresh whole slicer cucumbers, 24-count cartons\",13,cases,shipping,2026-09-11,ST26,ST26,route manifest,R0911-LKV1,wms.store_shipments,51546232-9a6a-4809-b6c5-6eb5a6573241\nL32611610,\"fresh whole slicer cucumbers, 24-count cartons\",10,cases,shipping,2026-09-11,ST03,ST03,route manifest,R0911-HBR1,wms.store_shipments,51546232-9a6a-4809-b6c5-6eb5a6573241\nL32611610,\"fresh whole slicer cucumbers, 24-count cartons\",6,cases,shipping,2026-09-11,ST06,ST06,route manifest,R0911-HBR2,wms.store_shipments,51546232-9a6a-4809-b6c5-6eb5a6573241\nPK260908000,\"fresh whole slicer cucumbers, 24-count cartons\",20,cases,receiving,2026-09-10,Corner Basket #15 Hayward,ST21,store receipt,CBK-275119,retail.receipts,14c09074-e4c4-46c7-aa7d-cb6633cb3cad\nPK260908000,\"fresh whole slicer cucumbers, 24-count cartons\",15,cases,receiving,2026-09-10,Corner Basket #17 Richmond,ST23,store receipt,CBK-275123,retail.receipts,14c09074-e4c4-46c7-aa7d-cb6633cb3cad\nPK260908000,\"fresh whole slicer cucumbers, 24-count cartons\",28,cases,receiving,2026-09-10,Corner Basket #14 Fremont,ST20,store receipt,CBK-275127,retail.receipts,14c09074-e4c4-46c7-aa7d-cb6633cb3cad\nPK260908000,\"fresh whole slicer cucumbers, 24-count cartons\",16,cases,receiving,2026-09-10,Corner Basket #12 Oakland,ST18,store receipt,CBK-275135,retail.receipts,14c09074-e4c4-46c7-aa7d-cb6633cb3cad\nPK260908000,\"fresh whole slicer cucumbers, 24-count cartons\",19,cases,receiving,2026-09-10,Corner Basket #13 Berkeley,ST19,store receipt,CBK-275143,retail.receipts,14c09074-e4c4-46c7-aa7d-cb6633cb3cad\nPK260908000,\"fresh whole slicer cucumbers, 24-count cartons\",14,cases,receiving,2026-09-10,Corner Basket #19 Concord,ST25,store receipt,CBK-275150,retail.receipts,14c09074-e4c4-46c7-aa7d-cb6633cb3cad\nPK260908004,\"fresh whole slicer cucumbers, 24-count cartons\",113,cases,shipping,2026-09-08,NGP,NGP,bill of lading,OCF-26-47805,packer.shipments,7a0ea1f3-5d16-4ab5-8313-db1c4e71df8f\nPK260908004,CUCUMBER SELECT 24CT,,,shipping,2026-09-08,,,,,wms.lpn,63982ca6-08ae-4f78-96e5-faf91ee097c4\nPK260908004,\"fresh whole slicer cucumbers, 24-count cartons\",,,shipping,2026-09-08,\"Halvard Cooling & Pack Co., Salinas CA\",,bill of lading (scan),OCF-26-47805,carrier.bol_index,52dd617f-9992-411f-abde-c1503eba9456\nPK260908004,\"fresh whole slicer cucumbers, 24-count cartons\",17,cases,receiving,2026-09-10,Pine & Prairie Grocers #311 Woodland,ST11,store receipt,PPG-590077,retail.receipts,14c09074-e4c4-46c7-aa7d-cb6633cb3cad\nPK260909000,\"fresh whole slicer cucumbers, 24-count cartons\",13,cases,receiving,2026-09-10,Corner Basket #19 Concord,ST25,store receipt,CBK-275152,retail.receipts,14c09074-e4c4-46c7-aa7d-cb6633cb3cad\nPK260909002,\"fresh whole slicer cucumbers, 24-count cartons\",114,cases,receiving,2026-09-09,PKR01,,bill of lading,RRL210818,wms.receiving,2ac42ca0-c398-4e8c-8ecc-f21ab4741367\nPK260909002,\"fresh whole slicer cucumbers, 24-count cartons\",114,cases,shipping,2026-09-09,NGP,NGP,bill of lading,RRL210818,packer.shipments,7a0ea1f3-5d16-4ab5-8313-db1c4e71df8f\nPK260909002,\"fresh whole slicer cucumbers, 24-count cartons\",12,cases,receiving,2026-09-11,HARBOR FOODS #205 SEASIDE,ST05,store receipt,HBR-662135,retail.receipts,14c09074-e4c4-46c7-aa7d-cb6633cb3cad\nPK260909002,\"fresh whole slicer cucumbers, 24-count cartons\",11,cases,receiving,2026-09-11,HARBOR FOODS #209 CARMEL,ST09,store receipt,HBR-662140,retail.receipts,14c09074-e4c4-46c7-aa7d-cb6633cb3cad\nPK260909002,\"fresh whole slicer cucumbers, 24-count cartons\",19,cases,receiving,2026-09-11,HARBOR FOODS #208 MARINA,ST08,store receipt,HBR-662145,retail.receipts,14c09074-e4c4-46c7-aa7d-cb6633cb3cad\nPK260909002,\"fresh whole slicer cucumbers, 24-count cartons\",15,cases,receiving,2026-09-11,Lakeview Markets #506 Minden,ST31,store receipt,LKV-486480,retail.receipts,14c09074-e4c4-46c7-aa7d-cb6633cb3cad\nPK260909002,\"fresh whole slicer cucumbers, 24-count cartons\",15,cases,receiving,2026-09-11,HARBOR FOODS #204 SALINAS,ST04,store receipt,HBR-662150,retail.receipts,14c09074-e4c4-46c7-aa7d-cb6633cb3cad\nPK260909002,\"fresh whole slicer cucumbers, 24-count cartons\",13,cases,receiving,2026-09-11,Lakeview Markets #501 Reno,ST26,store receipt,LKV-486490,retail.receipts,14c09074-e4c4-46c7-aa7d-cb6633cb3cad\nPK260909002,\"fresh whole slicer cucumbers, 24-count cartons\",10,cases,receiving,2026-09-11,HARBOR FOODS #203 WATSONVILLE,ST03,store receipt,HBR-662156,retail.receipts,14c09074-e4c4-46c7-aa7d-cb6633cb3cad\nPK260909002,\"fresh whole slicer cucumbers, 24-count cartons\",6,cases,receiving,2026-09-11,HARBOR FOODS #206 GILROY,ST06,store receipt,HBR-662160,retail.receipts,14c09074-e4c4-46c7-aa7d-cb6633cb3cad\n",
+    "rows": 38
+  },
+  "drafts": [
+    {
+      "to": "FS01",
+      "subject": "URGENT: Product Recall Notification - Salmonella",
+      "body": "Please immediately pull and hold all fresh whole slicer cucumbers, 24-count cartons associated with lot code L32611596 due to a Salmonella hazard. We will confirm next steps by phone shortly."
+    },
+    {
+      "to": "Harbor Foods",
+      "subject": "Product Recall Notification: Fresh Whole Slicer Cucumbers",
+      "body": "This is a recall notification for fresh whole slicer cucumbers, 24-count cartons, due to Salmonella. Affected lot codes are L32611610. For locations #203 Watsonville, #204 Salinas, #205 Seaside, #206 Gilroy, #208 Marina, and #209 Carmel, immediately pull and hold all product. The distributor will confirm next steps by phone."
+    },
+    {
+      "to": "Pine & Prairie Grocers",
+      "subject": "URGENT: Product Recall Notification - Fresh Whole Slicer Cucumbers",
+      "body": "This notification concerns fresh whole slicer cucumbers, 24-count cartons, due to a Salmonella hazard. The affected lot code is L32611596. Pine & Prairie Grocers #311 Woodland must immediately PULL and HOLD all inventory associated with this lot. Please hold all product pending confirmation. Our food-safety lead will contact you by phone shortly to confirm next steps."
+    },
+    {
+      "to": "Corner Basket",
+      "subject": "Urgent: Salmonella Recall Notification - Fresh Whole Slicer Cucumbers",
+      "body": "This notification concerns fresh whole slicer cucumbers (24-count cartons) due to a Salmonella hazard. Affected lot codes are L32611596 and L32611610. All listed locations (Corner Basket #12 Oakland, #13 Berkeley, #14 Fremont, #15 Hayward, #17 Richmond, #19 Concord) must immediately PULL and HOLD all product associated with these lots. Please hold pending confirmation. We will confirm next steps via phone shortly."
+    },
+    {
+      "to": "Lakeview Markets",
+      "subject": "Product Recall Notification: Fresh Whole Slicer Cucumbers",
+      "body": "This is a recall notification for fresh whole slicer cucumbers, 24-count cartons, due to Salmonella. Affected lot code is L32611610. Lakeview Markets #501 Reno must PULL this product. Lakeview Markets #506 Minden must PULL this product. Please pull and hold all affected product immediately. Our distributor will confirm these actions via phone shortly."
+    }
+  ],
+  "stats": {
+    "queries": 25,
+    "modelCalls": 11,
+    "races": 0,
+    "retries": 1,
+    "escalations": 0,
+    "ms": 188
+  }
+}

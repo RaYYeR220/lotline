@@ -1,0 +1,1482 @@
+{
+  "runId": "run-20261026171258",
+  "status": "complete",
+  "mode": "sample",
+  "scope": {
+    "noticeId": "N-04417b15f1",
+    "commodity": "soft cheese",
+    "productText": "Queso fresco soft cheese, 10 oz rounds, 12 per case",
+    "firm": "Alder Run Creamery",
+    "lotCodes": [
+      "AR260915Q2",
+      "AR260919Q2"
+    ],
+    "hazard": "Listeria monocytogenes",
+    "recallClass": "I",
+    "uncertainty": []
+  },
+  "links": [
+    {
+      "id": "LK-53e112dac7",
+      "kind": "received-as",
+      "from": "lot:AR260915Q2",
+      "to": "lpn:L32611739",
+      "at": "2026-09-17",
+      "quantity": 29,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "lpn",
+          "rowKey": "L32611739",
+          "queryId": "ff35ae29-926a-4957-87cb-83fe34c0720b",
+          "sql": "SELECT * FROM wms.lpn WHERE vendor_lot IN ('AR260915Q2', 'AR260919Q2') ORDER BY internal_lpn",
+          "fields": {
+            "internal_lpn": "L32611739",
+            "vendor_lot": "AR260915Q2",
+            "commodity": "soft_cheese",
+            "product_desc": "QUESO FRESCO 12/10OZ"
+          }
+        },
+        {
+          "source": "wms",
+          "table": "receiving",
+          "rowKey": "RCV-454915",
+          "queryId": "47e73e4c-6a15-45c2-9f0b-9d750b9fe0c2",
+          "sql": "SELECT * FROM wms.receiving WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY rcv_id",
+          "fields": {
+            "rcv_id": "RCV-454915",
+            "vendor_id": "ARC",
+            "vendor_lot": "AR260915Q2",
+            "internal_lpn": "L32611739",
+            "received_at": "2026-09-17 07:54:00",
+            "qty_cases": "29",
+            "bol_no": "RRL210896"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-c22996435b",
+      "kind": "received-as",
+      "from": "lot:AR260919Q2",
+      "to": "lpn:L32611798",
+      "at": "2026-09-21",
+      "quantity": 41,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "lpn",
+          "rowKey": "L32611798",
+          "queryId": "ff35ae29-926a-4957-87cb-83fe34c0720b",
+          "sql": "SELECT * FROM wms.lpn WHERE vendor_lot IN ('AR260915Q2', 'AR260919Q2') ORDER BY internal_lpn",
+          "fields": {
+            "internal_lpn": "L32611798",
+            "vendor_lot": "AR260919Q2",
+            "commodity": "soft_cheese",
+            "product_desc": "QUESO FRESCO 12/10OZ"
+          }
+        },
+        {
+          "source": "wms",
+          "table": "receiving",
+          "rowKey": "RCV-454935",
+          "queryId": "47e73e4c-6a15-45c2-9f0b-9d750b9fe0c2",
+          "sql": "SELECT * FROM wms.receiving WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY rcv_id",
+          "fields": {
+            "rcv_id": "RCV-454935",
+            "vendor_id": "ARC",
+            "vendor_lot": "AR260919Q2",
+            "internal_lpn": "L32611798",
+            "received_at": "2026-09-21 08:54:00",
+            "qty_cases": "41",
+            "bol_no": "RRL210950"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-ef7f5c8d22",
+      "kind": "shipped-to",
+      "from": "lpn:L32611739",
+      "to": "loc:ST13",
+      "at": "2026-09-19",
+      "quantity": 4,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1640048",
+          "queryId": "1610f51d-20ef-4aff-b395-e8fe54af4d38",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1640048",
+            "internal_lpn": "L32611739",
+            "location_id": "ST13",
+            "ship_date": "2026-09-19",
+            "qty_cases": "4",
+            "route_id": "R0919-PPG1"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "PPG-590166",
+          "queryId": "c6b9e4bb-24a5-4417-859d-f4b17d434041",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST13', 'ST22', 'ST25', 'ST19', 'ST12', 'ST04', 'ST02', 'ST09', 'ST24', 'ST20', 'ST28', 'ST31', 'ST01', 'ST06', 'ST05', 'FS02') AND received_at >= '2026-09-19' AND received_at <= '2026-09-30' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "PPG-590166",
+            "chain_id": "PPG",
+            "store_id": "ST13",
+            "store_name": "Pine & Prairie Grocers #313 Folsom",
+            "supplier_ref_lot": "ppg:ar260915q2",
+            "received_at": "2026-09-19 11:08:00",
+            "qty_cases": "4"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-26f8e0e94e",
+      "kind": "shipped-to",
+      "from": "lpn:L32611739",
+      "to": "loc:ST22",
+      "at": "2026-09-19",
+      "quantity": 4,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1640059",
+          "queryId": "1610f51d-20ef-4aff-b395-e8fe54af4d38",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1640059",
+            "internal_lpn": "L32611739",
+            "location_id": "ST22",
+            "ship_date": "2026-09-19",
+            "qty_cases": "4",
+            "route_id": "R0919-CBK2"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "CBK-275266",
+          "queryId": "c6b9e4bb-24a5-4417-859d-f4b17d434041",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST13', 'ST22', 'ST25', 'ST19', 'ST12', 'ST04', 'ST02', 'ST09', 'ST24', 'ST20', 'ST28', 'ST31', 'ST01', 'ST06', 'ST05', 'FS02') AND received_at >= '2026-09-19' AND received_at <= '2026-09-30' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "CBK-275266",
+            "chain_id": "CBK",
+            "store_id": "ST22",
+            "store_name": "Corner Basket #16 San Leandro",
+            "supplier_ref_lot": "CBK:AR260915Q2",
+            "received_at": "2026-09-19 06:12:00",
+            "qty_cases": "4"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-5306490a60",
+      "kind": "shipped-to",
+      "from": "lpn:L32611739",
+      "to": "loc:ST25",
+      "at": "2026-09-19",
+      "quantity": 3,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1640062",
+          "queryId": "1610f51d-20ef-4aff-b395-e8fe54af4d38",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1640062",
+            "internal_lpn": "L32611739",
+            "location_id": "ST25",
+            "ship_date": "2026-09-19",
+            "qty_cases": "3",
+            "route_id": "R0919-CBK2"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "CBK-275269",
+          "queryId": "c6b9e4bb-24a5-4417-859d-f4b17d434041",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST13', 'ST22', 'ST25', 'ST19', 'ST12', 'ST04', 'ST02', 'ST09', 'ST24', 'ST20', 'ST28', 'ST31', 'ST01', 'ST06', 'ST05', 'FS02') AND received_at >= '2026-09-19' AND received_at <= '2026-09-30' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "CBK-275269",
+            "chain_id": "CBK",
+            "store_id": "ST25",
+            "store_name": "Corner Basket #19 Concord",
+            "supplier_ref_lot": "CBK:AR260915Q2",
+            "received_at": "2026-09-19 10:52:00",
+            "qty_cases": "3"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-c3bce9c89d",
+      "kind": "shipped-to",
+      "from": "lpn:L32611739",
+      "to": "loc:ST19",
+      "at": "2026-09-19",
+      "quantity": 3,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1640088",
+          "queryId": "1610f51d-20ef-4aff-b395-e8fe54af4d38",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1640088",
+            "internal_lpn": "L32611739",
+            "location_id": "ST19",
+            "ship_date": "2026-09-19",
+            "qty_cases": "3",
+            "route_id": "R0919-CBK1"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "CBK-275286",
+          "queryId": "c6b9e4bb-24a5-4417-859d-f4b17d434041",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST13', 'ST22', 'ST25', 'ST19', 'ST12', 'ST04', 'ST02', 'ST09', 'ST24', 'ST20', 'ST28', 'ST31', 'ST01', 'ST06', 'ST05', 'FS02') AND received_at >= '2026-09-19' AND received_at <= '2026-09-30' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "CBK-275286",
+            "chain_id": "CBK",
+            "store_id": "ST19",
+            "store_name": "Corner Basket #13 Berkeley",
+            "supplier_ref_lot": "CBK:AR260915Q2",
+            "received_at": "2026-09-19 06:44:00",
+            "qty_cases": "3"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-7c9b3bbbbc",
+      "kind": "shipped-to",
+      "from": "lpn:L32611739",
+      "to": "loc:ST12",
+      "at": "2026-09-19",
+      "quantity": 3,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1640106",
+          "queryId": "1610f51d-20ef-4aff-b395-e8fe54af4d38",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1640106",
+            "internal_lpn": "L32611739",
+            "location_id": "ST12",
+            "ship_date": "2026-09-19",
+            "qty_cases": "3",
+            "route_id": "R0919-PPG1"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "PPG-590190",
+          "queryId": "c6b9e4bb-24a5-4417-859d-f4b17d434041",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST13', 'ST22', 'ST25', 'ST19', 'ST12', 'ST04', 'ST02', 'ST09', 'ST24', 'ST20', 'ST28', 'ST31', 'ST01', 'ST06', 'ST05', 'FS02') AND received_at >= '2026-09-19' AND received_at <= '2026-09-30' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "PPG-590190",
+            "chain_id": "PPG",
+            "store_id": "ST12",
+            "store_name": "Pine & Prairie Grocers #312 Roseville",
+            "supplier_ref_lot": "ppg:ar260915q2",
+            "received_at": "2026-09-19 06:24:00",
+            "qty_cases": "3"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-4543b5ce94",
+      "kind": "shipped-to",
+      "from": "lpn:L32611739",
+      "to": "loc:ST04",
+      "at": "2026-09-21",
+      "quantity": 3,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1640112",
+          "queryId": "1610f51d-20ef-4aff-b395-e8fe54af4d38",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1640112",
+            "internal_lpn": "L32611739",
+            "location_id": "ST04",
+            "ship_date": "2026-09-21",
+            "qty_cases": "3",
+            "route_id": "R0921-HBR1"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "HBR-662281",
+          "queryId": "c6b9e4bb-24a5-4417-859d-f4b17d434041",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST13', 'ST22', 'ST25', 'ST19', 'ST12', 'ST04', 'ST02', 'ST09', 'ST24', 'ST20', 'ST28', 'ST31', 'ST01', 'ST06', 'ST05', 'FS02') AND received_at >= '2026-09-19' AND received_at <= '2026-09-30' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "HBR-662281",
+            "chain_id": "HBR",
+            "store_id": "ST04",
+            "store_name": "HARBOR FOODS #204 SALINAS",
+            "supplier_ref_lot": "HBR:AR260915Q2",
+            "received_at": "2026-09-21 06:09:00",
+            "qty_cases": "3"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-4b8657f7fe",
+      "kind": "shipped-to",
+      "from": "lpn:L32611739",
+      "to": "loc:ST02",
+      "at": "2026-09-21",
+      "quantity": 2,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1640121",
+          "queryId": "1610f51d-20ef-4aff-b395-e8fe54af4d38",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1640121",
+            "internal_lpn": "L32611739",
+            "location_id": "ST02",
+            "ship_date": "2026-09-21",
+            "qty_cases": "2",
+            "route_id": "R0921-HBR1"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "HBR-662290",
+          "queryId": "c6b9e4bb-24a5-4417-859d-f4b17d434041",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST13', 'ST22', 'ST25', 'ST19', 'ST12', 'ST04', 'ST02', 'ST09', 'ST24', 'ST20', 'ST28', 'ST31', 'ST01', 'ST06', 'ST05', 'FS02') AND received_at >= '2026-09-19' AND received_at <= '2026-09-30' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "HBR-662290",
+            "chain_id": "HBR",
+            "store_id": "ST02",
+            "store_name": "HARBOR FOODS #202 SANTA CRUZ",
+            "supplier_ref_lot": "HBR:AR260915Q2",
+            "received_at": "2026-09-21 10:04:00",
+            "qty_cases": "2"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-42ebf03a0a",
+      "kind": "shipped-to",
+      "from": "lpn:L32611739",
+      "to": "loc:ST09",
+      "at": "2026-09-21",
+      "quantity": 2,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1640133",
+          "queryId": "1610f51d-20ef-4aff-b395-e8fe54af4d38",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1640133",
+            "internal_lpn": "L32611739",
+            "location_id": "ST09",
+            "ship_date": "2026-09-21",
+            "qty_cases": "2",
+            "route_id": "R0921-HBR3"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "HBR-662302",
+          "queryId": "c6b9e4bb-24a5-4417-859d-f4b17d434041",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST13', 'ST22', 'ST25', 'ST19', 'ST12', 'ST04', 'ST02', 'ST09', 'ST24', 'ST20', 'ST28', 'ST31', 'ST01', 'ST06', 'ST05', 'FS02') AND received_at >= '2026-09-19' AND received_at <= '2026-09-30' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "HBR-662302",
+            "chain_id": "HBR",
+            "store_id": "ST09",
+            "store_name": "HARBOR FOODS #209 CARMEL",
+            "supplier_ref_lot": "HBR:AR260915Q2",
+            "received_at": "2026-09-21 10:50:00",
+            "qty_cases": "2"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-8274ed8d76",
+      "kind": "shipped-to",
+      "from": "lpn:L32611739",
+      "to": "loc:ST19",
+      "at": "2026-09-21",
+      "quantity": 2,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1640148",
+          "queryId": "1610f51d-20ef-4aff-b395-e8fe54af4d38",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1640148",
+            "internal_lpn": "L32611739",
+            "location_id": "ST19",
+            "ship_date": "2026-09-21",
+            "qty_cases": "2",
+            "route_id": "R0921-CBK1"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "CBK-275308",
+          "queryId": "c6b9e4bb-24a5-4417-859d-f4b17d434041",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST13', 'ST22', 'ST25', 'ST19', 'ST12', 'ST04', 'ST02', 'ST09', 'ST24', 'ST20', 'ST28', 'ST31', 'ST01', 'ST06', 'ST05', 'FS02') AND received_at >= '2026-09-19' AND received_at <= '2026-09-30' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "CBK-275308",
+            "chain_id": "CBK",
+            "store_id": "ST19",
+            "store_name": "Corner Basket #13 Berkeley",
+            "supplier_ref_lot": "CBK:AR260915Q2",
+            "received_at": "2026-09-21 09:33:00",
+            "qty_cases": "2"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-196f5eba82",
+      "kind": "shipped-to",
+      "from": "lpn:L32611739",
+      "to": "loc:ST24",
+      "at": "2026-09-21",
+      "quantity": 2,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1640164",
+          "queryId": "1610f51d-20ef-4aff-b395-e8fe54af4d38",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1640164",
+            "internal_lpn": "L32611739",
+            "location_id": "ST24",
+            "ship_date": "2026-09-21",
+            "qty_cases": "2",
+            "route_id": "R0921-CBK2"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "CBK-275316",
+          "queryId": "c6b9e4bb-24a5-4417-859d-f4b17d434041",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST13', 'ST22', 'ST25', 'ST19', 'ST12', 'ST04', 'ST02', 'ST09', 'ST24', 'ST20', 'ST28', 'ST31', 'ST01', 'ST06', 'ST05', 'FS02') AND received_at >= '2026-09-19' AND received_at <= '2026-09-30' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "CBK-275316",
+            "chain_id": "CBK",
+            "store_id": "ST24",
+            "store_name": "Corner Basket #18 Vallejo",
+            "supplier_ref_lot": "CBK:AR260915Q2",
+            "received_at": "2026-09-21 06:23:00",
+            "qty_cases": "2"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-03d252b7e3",
+      "kind": "shipped-to",
+      "from": "lpn:L32611739",
+      "to": "loc:ST20",
+      "at": "2026-09-21",
+      "quantity": 1,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1640180",
+          "queryId": "1610f51d-20ef-4aff-b395-e8fe54af4d38",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1640180",
+            "internal_lpn": "L32611739",
+            "location_id": "ST20",
+            "ship_date": "2026-09-21",
+            "qty_cases": "1",
+            "route_id": "R0921-CBK1"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "CBK-275329",
+          "queryId": "c6b9e4bb-24a5-4417-859d-f4b17d434041",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST13', 'ST22', 'ST25', 'ST19', 'ST12', 'ST04', 'ST02', 'ST09', 'ST24', 'ST20', 'ST28', 'ST31', 'ST01', 'ST06', 'ST05', 'FS02') AND received_at >= '2026-09-19' AND received_at <= '2026-09-30' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "CBK-275329",
+            "chain_id": "CBK",
+            "store_id": "ST20",
+            "store_name": "Corner Basket #14 Fremont",
+            "supplier_ref_lot": "CBK:AR260915Q2",
+            "received_at": "2026-09-21 09:40:00",
+            "qty_cases": "1"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-aa0cc60a70",
+      "kind": "shipped-to",
+      "from": "lpn:L32611798",
+      "to": "loc:ST28",
+      "at": "2026-09-22",
+      "quantity": 3,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1640211",
+          "queryId": "1610f51d-20ef-4aff-b395-e8fe54af4d38",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1640211",
+            "internal_lpn": "L32611798",
+            "location_id": "ST28",
+            "ship_date": "2026-09-22",
+            "qty_cases": "3",
+            "route_id": "R0922-LKV1"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "LKV-486546",
+          "queryId": "c6b9e4bb-24a5-4417-859d-f4b17d434041",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST13', 'ST22', 'ST25', 'ST19', 'ST12', 'ST04', 'ST02', 'ST09', 'ST24', 'ST20', 'ST28', 'ST31', 'ST01', 'ST06', 'ST05', 'FS02') AND received_at >= '2026-09-19' AND received_at <= '2026-09-30' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "LKV-486546",
+            "chain_id": "LKV",
+            "store_id": "ST28",
+            "store_name": "Lakeview Markets #503 Carson City",
+            "supplier_ref_lot": "LKV:AR260919Q2",
+            "received_at": "2026-09-22 09:50:00",
+            "qty_cases": "3"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-b6b1f7bca7",
+      "kind": "shipped-to",
+      "from": "lpn:L32611798",
+      "to": "loc:ST12",
+      "at": "2026-09-22",
+      "quantity": 3,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1640239",
+          "queryId": "1610f51d-20ef-4aff-b395-e8fe54af4d38",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1640239",
+            "internal_lpn": "L32611798",
+            "location_id": "ST12",
+            "ship_date": "2026-09-22",
+            "qty_cases": "3",
+            "route_id": "R0922-PPG1"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "PPG-590214",
+          "queryId": "c6b9e4bb-24a5-4417-859d-f4b17d434041",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST13', 'ST22', 'ST25', 'ST19', 'ST12', 'ST04', 'ST02', 'ST09', 'ST24', 'ST20', 'ST28', 'ST31', 'ST01', 'ST06', 'ST05', 'FS02') AND received_at >= '2026-09-19' AND received_at <= '2026-09-30' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "PPG-590214",
+            "chain_id": "PPG",
+            "store_id": "ST12",
+            "store_name": "Pine & Prairie Grocers #312 Roseville",
+            "supplier_ref_lot": "ppg:ar260919q2",
+            "received_at": "2026-09-22 10:46:00",
+            "qty_cases": "3"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-793980d87b",
+      "kind": "shipped-to",
+      "from": "lpn:L32611798",
+      "to": "loc:ST31",
+      "at": "2026-09-22",
+      "quantity": 3,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1640246",
+          "queryId": "1610f51d-20ef-4aff-b395-e8fe54af4d38",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1640246",
+            "internal_lpn": "L32611798",
+            "location_id": "ST31",
+            "ship_date": "2026-09-22",
+            "qty_cases": "3",
+            "route_id": "R0922-LKV2"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "LKV-486552",
+          "queryId": "c6b9e4bb-24a5-4417-859d-f4b17d434041",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST13', 'ST22', 'ST25', 'ST19', 'ST12', 'ST04', 'ST02', 'ST09', 'ST24', 'ST20', 'ST28', 'ST31', 'ST01', 'ST06', 'ST05', 'FS02') AND received_at >= '2026-09-19' AND received_at <= '2026-09-30' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "LKV-486552",
+            "chain_id": "LKV",
+            "store_id": "ST31",
+            "store_name": "Lakeview Markets #506 Minden",
+            "supplier_ref_lot": "LKV:AR260919Q2",
+            "received_at": "2026-09-22 08:13:00",
+            "qty_cases": "3"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-1434e312d2",
+      "kind": "shipped-to",
+      "from": "lpn:L32611798",
+      "to": "loc:ST04",
+      "at": "2026-09-23",
+      "quantity": 2,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1640277",
+          "queryId": "1610f51d-20ef-4aff-b395-e8fe54af4d38",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1640277",
+            "internal_lpn": "L32611798",
+            "location_id": "ST04",
+            "ship_date": "2026-09-23",
+            "qty_cases": "2",
+            "route_id": "R0923-HBR1"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "HBR-662325",
+          "queryId": "c6b9e4bb-24a5-4417-859d-f4b17d434041",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST13', 'ST22', 'ST25', 'ST19', 'ST12', 'ST04', 'ST02', 'ST09', 'ST24', 'ST20', 'ST28', 'ST31', 'ST01', 'ST06', 'ST05', 'FS02') AND received_at >= '2026-09-19' AND received_at <= '2026-09-30' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "HBR-662325",
+            "chain_id": "HBR",
+            "store_id": "ST04",
+            "store_name": "HARBOR FOODS #204 SALINAS",
+            "supplier_ref_lot": "HBR:AR260919Q2",
+            "received_at": "2026-09-23 06:07:00",
+            "qty_cases": "2"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-53425c4ee6",
+      "kind": "shipped-to",
+      "from": "lpn:L32611798",
+      "to": "loc:ST01",
+      "at": "2026-09-23",
+      "quantity": 4,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1640297",
+          "queryId": "1610f51d-20ef-4aff-b395-e8fe54af4d38",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1640297",
+            "internal_lpn": "L32611798",
+            "location_id": "ST01",
+            "ship_date": "2026-09-23",
+            "qty_cases": "4",
+            "route_id": "R0923-HBR1"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "HBR-662345",
+          "queryId": "c6b9e4bb-24a5-4417-859d-f4b17d434041",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST13', 'ST22', 'ST25', 'ST19', 'ST12', 'ST04', 'ST02', 'ST09', 'ST24', 'ST20', 'ST28', 'ST31', 'ST01', 'ST06', 'ST05', 'FS02') AND received_at >= '2026-09-19' AND received_at <= '2026-09-30' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "HBR-662345",
+            "chain_id": "HBR",
+            "store_id": "ST01",
+            "store_name": "HARBOR FOODS #201 MONTEREY",
+            "supplier_ref_lot": "HBR:AR260919Q2",
+            "received_at": "2026-09-23 08:09:00",
+            "qty_cases": "4"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-5036372704",
+      "kind": "shipped-to",
+      "from": "lpn:L32611798",
+      "to": "loc:ST06",
+      "at": "2026-09-23",
+      "quantity": 2,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1640309",
+          "queryId": "1610f51d-20ef-4aff-b395-e8fe54af4d38",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1640309",
+            "internal_lpn": "L32611798",
+            "location_id": "ST06",
+            "ship_date": "2026-09-23",
+            "qty_cases": "2",
+            "route_id": "R0923-HBR2"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "HBR-662354",
+          "queryId": "c6b9e4bb-24a5-4417-859d-f4b17d434041",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST13', 'ST22', 'ST25', 'ST19', 'ST12', 'ST04', 'ST02', 'ST09', 'ST24', 'ST20', 'ST28', 'ST31', 'ST01', 'ST06', 'ST05', 'FS02') AND received_at >= '2026-09-19' AND received_at <= '2026-09-30' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "HBR-662354",
+            "chain_id": "HBR",
+            "store_id": "ST06",
+            "store_name": "HARBOR FOODS #206 GILROY",
+            "supplier_ref_lot": "HBR:AR260919Q2",
+            "received_at": "2026-09-23 07:44:00",
+            "qty_cases": "2"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-261f1c6b01",
+      "kind": "shipped-to",
+      "from": "lpn:L32611798",
+      "to": "loc:ST05",
+      "at": "2026-09-23",
+      "quantity": 3,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1640319",
+          "queryId": "1610f51d-20ef-4aff-b395-e8fe54af4d38",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1640319",
+            "internal_lpn": "L32611798",
+            "location_id": "ST05",
+            "ship_date": "2026-09-23",
+            "qty_cases": "3",
+            "route_id": "R0923-HBR2"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "HBR-662364",
+          "queryId": "c6b9e4bb-24a5-4417-859d-f4b17d434041",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST13', 'ST22', 'ST25', 'ST19', 'ST12', 'ST04', 'ST02', 'ST09', 'ST24', 'ST20', 'ST28', 'ST31', 'ST01', 'ST06', 'ST05', 'FS02') AND received_at >= '2026-09-19' AND received_at <= '2026-09-30' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "HBR-662364",
+            "chain_id": "HBR",
+            "store_id": "ST05",
+            "store_name": "HARBOR FOODS #205 SEASIDE",
+            "supplier_ref_lot": "HBR:AR260919Q2",
+            "received_at": "2026-09-23 08:15:00",
+            "qty_cases": "3"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-9c40bd47b6",
+      "kind": "shipped-to",
+      "from": "lpn:L32611798",
+      "to": "loc:ST20",
+      "at": "2026-09-24",
+      "quantity": 4,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1640380",
+          "queryId": "1610f51d-20ef-4aff-b395-e8fe54af4d38",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1640380",
+            "internal_lpn": "L32611798",
+            "location_id": "ST20",
+            "ship_date": "2026-09-24",
+            "qty_cases": "4",
+            "route_id": "R0924-CBK1"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "CBK-275359",
+          "queryId": "c6b9e4bb-24a5-4417-859d-f4b17d434041",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST13', 'ST22', 'ST25', 'ST19', 'ST12', 'ST04', 'ST02', 'ST09', 'ST24', 'ST20', 'ST28', 'ST31', 'ST01', 'ST06', 'ST05', 'FS02') AND received_at >= '2026-09-19' AND received_at <= '2026-09-30' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "CBK-275359",
+            "chain_id": "CBK",
+            "store_id": "ST20",
+            "store_name": "Corner Basket #14 Fremont",
+            "supplier_ref_lot": "CBK:AR260919Q2",
+            "received_at": "2026-09-24 09:21:00",
+            "qty_cases": "4"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-e4c7e80498",
+      "kind": "shipped-to",
+      "from": "lpn:L32611798",
+      "to": "loc:ST24",
+      "at": "2026-09-24",
+      "quantity": 4,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1640386",
+          "queryId": "1610f51d-20ef-4aff-b395-e8fe54af4d38",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1640386",
+            "internal_lpn": "L32611798",
+            "location_id": "ST24",
+            "ship_date": "2026-09-24",
+            "qty_cases": "4",
+            "route_id": "R0924-CBK2"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "CBK-275365",
+          "queryId": "c6b9e4bb-24a5-4417-859d-f4b17d434041",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST13', 'ST22', 'ST25', 'ST19', 'ST12', 'ST04', 'ST02', 'ST09', 'ST24', 'ST20', 'ST28', 'ST31', 'ST01', 'ST06', 'ST05', 'FS02') AND received_at >= '2026-09-19' AND received_at <= '2026-09-30' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "CBK-275365",
+            "chain_id": "CBK",
+            "store_id": "ST24",
+            "store_name": "Corner Basket #18 Vallejo",
+            "supplier_ref_lot": "CBK:AR260919Q2",
+            "received_at": "2026-09-24 11:37:00",
+            "qty_cases": "4"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-3b627a02c8",
+      "kind": "shipped-to",
+      "from": "lpn:L32611798",
+      "to": "loc:ST22",
+      "at": "2026-09-24",
+      "quantity": 2,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1640393",
+          "queryId": "1610f51d-20ef-4aff-b395-e8fe54af4d38",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1640393",
+            "internal_lpn": "L32611798",
+            "location_id": "ST22",
+            "ship_date": "2026-09-24",
+            "qty_cases": "2",
+            "route_id": "R0924-CBK2"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "CBK-275372",
+          "queryId": "c6b9e4bb-24a5-4417-859d-f4b17d434041",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST13', 'ST22', 'ST25', 'ST19', 'ST12', 'ST04', 'ST02', 'ST09', 'ST24', 'ST20', 'ST28', 'ST31', 'ST01', 'ST06', 'ST05', 'FS02') AND received_at >= '2026-09-19' AND received_at <= '2026-09-30' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "CBK-275372",
+            "chain_id": "CBK",
+            "store_id": "ST22",
+            "store_name": "Corner Basket #16 San Leandro",
+            "supplier_ref_lot": "CBK:AR260919Q2",
+            "received_at": "2026-09-24 08:56:00",
+            "qty_cases": "2"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-60b0a81a97",
+      "kind": "shipped-to",
+      "from": "lpn:L32611798",
+      "to": "loc:FS02",
+      "at": "2026-09-25",
+      "quantity": 3,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1640405",
+          "queryId": "1610f51d-20ef-4aff-b395-e8fe54af4d38",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1640405",
+            "internal_lpn": "L32611798",
+            "location_id": "FS02",
+            "ship_date": "2026-09-25",
+            "qty_cases": "3",
+            "route_id": "R0925-FS"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.9,
+      "notes": []
+    },
+    {
+      "id": "LK-00412e6a7c",
+      "kind": "shipped-to",
+      "from": "lpn:L32611798",
+      "to": "loc:ST01",
+      "at": "2026-09-25",
+      "quantity": 3,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1640456",
+          "queryId": "1610f51d-20ef-4aff-b395-e8fe54af4d38",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1640456",
+            "internal_lpn": "L32611798",
+            "location_id": "ST01",
+            "ship_date": "2026-09-25",
+            "qty_cases": "3",
+            "route_id": "R0925-HBR1"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "HBR-662390",
+          "queryId": "c6b9e4bb-24a5-4417-859d-f4b17d434041",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST13', 'ST22', 'ST25', 'ST19', 'ST12', 'ST04', 'ST02', 'ST09', 'ST24', 'ST20', 'ST28', 'ST31', 'ST01', 'ST06', 'ST05', 'FS02') AND received_at >= '2026-09-19' AND received_at <= '2026-09-30' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "HBR-662390",
+            "chain_id": "HBR",
+            "store_id": "ST01",
+            "store_name": "HARBOR FOODS #201 MONTEREY",
+            "supplier_ref_lot": "HBR:AR260919Q2",
+            "received_at": "2026-09-25 11:35:00",
+            "qty_cases": "3"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-435e0cb1eb",
+      "kind": "shipped-to",
+      "from": "lpn:L32611798",
+      "to": "loc:ST04",
+      "at": "2026-09-25",
+      "quantity": 4,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1640468",
+          "queryId": "1610f51d-20ef-4aff-b395-e8fe54af4d38",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1640468",
+            "internal_lpn": "L32611798",
+            "location_id": "ST04",
+            "ship_date": "2026-09-25",
+            "qty_cases": "4",
+            "route_id": "R0925-HBR1"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "HBR-662402",
+          "queryId": "c6b9e4bb-24a5-4417-859d-f4b17d434041",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST13', 'ST22', 'ST25', 'ST19', 'ST12', 'ST04', 'ST02', 'ST09', 'ST24', 'ST20', 'ST28', 'ST31', 'ST01', 'ST06', 'ST05', 'FS02') AND received_at >= '2026-09-19' AND received_at <= '2026-09-30' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "HBR-662402",
+            "chain_id": "HBR",
+            "store_id": "ST04",
+            "store_name": "HARBOR FOODS #204 SALINAS",
+            "supplier_ref_lot": "HBR:AR260919Q2",
+            "received_at": "2026-09-25 09:53:00",
+            "qty_cases": "4"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    },
+    {
+      "id": "LK-0dc2dc95e8",
+      "kind": "shipped-to",
+      "from": "lpn:L32611798",
+      "to": "loc:ST19",
+      "at": "2026-09-26",
+      "quantity": 1,
+      "evidence": [
+        {
+          "source": "wms",
+          "table": "store_shipments",
+          "rowKey": "OL-1640472",
+          "queryId": "1610f51d-20ef-4aff-b395-e8fe54af4d38",
+          "sql": "SELECT * FROM wms.store_shipments WHERE internal_lpn IN ('L32611739', 'L32611798') ORDER BY order_line_id",
+          "fields": {
+            "order_line_id": "OL-1640472",
+            "internal_lpn": "L32611798",
+            "location_id": "ST19",
+            "ship_date": "2026-09-26",
+            "qty_cases": "1",
+            "route_id": "R0926-CBK1"
+          }
+        },
+        {
+          "source": "retail",
+          "table": "receipts",
+          "rowKey": "CBK-275380",
+          "queryId": "c6b9e4bb-24a5-4417-859d-f4b17d434041",
+          "sql": "SELECT * FROM retail.receipts WHERE store_id IN ('ST13', 'ST22', 'ST25', 'ST19', 'ST12', 'ST04', 'ST02', 'ST09', 'ST24', 'ST20', 'ST28', 'ST31', 'ST01', 'ST06', 'ST05', 'FS02') AND received_at >= '2026-09-19' AND received_at <= '2026-09-30' ORDER BY receipt_id",
+          "fields": {
+            "receipt_id": "CBK-275380",
+            "chain_id": "CBK",
+            "store_id": "ST19",
+            "store_name": "Corner Basket #13 Berkeley",
+            "supplier_ref_lot": "CBK:AR260919Q2",
+            "received_at": "2026-09-26 09:20:00",
+            "qty_cases": "1"
+          }
+        }
+      ],
+      "status": "proven",
+      "confidence": 0.97,
+      "notes": []
+    }
+  ],
+  "actions": [
+    {
+      "locationId": "FS02",
+      "locationName": "Bramble Street Bistro Group (commissary)",
+      "kind": "PULL",
+      "lots": [
+        "L32611798"
+      ],
+      "rationale": "One proven delivery of affected product received; immediate removal required.",
+      "linkIds": [
+        "LK-60b0a81a97"
+      ],
+      "contractId": "lc_01M5WK6YCVBAWMBD508XSD1VFN",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST01",
+      "locationName": "Harbor Foods #201 Monterey",
+      "kind": "PULL",
+      "lots": [
+        "L32611798"
+      ],
+      "rationale": "Two proven deliveries of affected product received; immediate removal required.",
+      "linkIds": [
+        "LK-53425c4ee6",
+        "LK-00412e6a7c"
+      ],
+      "contractId": "lc_01M5WK6YCVBAWMBD508XSD1VFP",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST02",
+      "locationName": "Harbor Foods #202 Santa Cruz",
+      "kind": "PULL",
+      "lots": [
+        "L32611739"
+      ],
+      "rationale": "One proven delivery of affected product received; immediate removal required.",
+      "linkIds": [
+        "LK-4b8657f7fe"
+      ],
+      "contractId": "lc_01M5WK6YCW6FW14ZJ6BF6G9WBZ",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST04",
+      "locationName": "Harbor Foods #204 Salinas",
+      "kind": "PULL",
+      "lots": [
+        "L32611739",
+        "L32611798"
+      ],
+      "rationale": "Three proven deliveries of affected product received (two lots); immediate removal required.",
+      "linkIds": [
+        "LK-4543b5ce94",
+        "LK-1434e312d2",
+        "LK-435e0cb1eb"
+      ],
+      "contractId": "lc_01M5WK6YCW6FW14ZJ6BF6G9WC0",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST05",
+      "locationName": "Harbor Foods #205 Seaside",
+      "kind": "PULL",
+      "lots": [
+        "L32611798"
+      ],
+      "rationale": "One proven delivery of affected product received; immediate removal required.",
+      "linkIds": [
+        "LK-261f1c6b01"
+      ],
+      "contractId": "lc_01M5WK6YCW6FW14ZJ6BF6G9WC1",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST06",
+      "locationName": "Harbor Foods #206 Gilroy",
+      "kind": "PULL",
+      "lots": [
+        "L32611798"
+      ],
+      "rationale": "One proven delivery of affected product received; immediate removal required.",
+      "linkIds": [
+        "LK-5036372704"
+      ],
+      "contractId": "lc_01M5WK6YCX9N9RT4N2RAJYX3NQ",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST09",
+      "locationName": "Harbor Foods #209 Carmel",
+      "kind": "PULL",
+      "lots": [
+        "L32611739"
+      ],
+      "rationale": "One proven delivery of affected product received; immediate removal required.",
+      "linkIds": [
+        "LK-42ebf03a0a"
+      ],
+      "contractId": "lc_01M5WK6YCX9N9RT4N2RAJYX3NR",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST12",
+      "locationName": "Pine & Prairie Grocers #312 Roseville",
+      "kind": "PULL",
+      "lots": [
+        "L32611739",
+        "L32611798"
+      ],
+      "rationale": "Two proven deliveries of affected product received (two lots); immediate removal required.",
+      "linkIds": [
+        "LK-7c9b3bbbbc",
+        "LK-b6b1f7bca7"
+      ],
+      "contractId": "lc_01M5WK6YCYGPFH6RJ23995VRA1",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST13",
+      "locationName": "Pine & Prairie Grocers #313 Folsom",
+      "kind": "PULL",
+      "lots": [
+        "L32611739"
+      ],
+      "rationale": "One proven delivery of affected product received; immediate removal required.",
+      "linkIds": [
+        "LK-ef7f5c8d22"
+      ],
+      "contractId": "lc_01M5WK6YCYGPFH6RJ23995VRA2",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST19",
+      "locationName": "Corner Basket #13 Berkeley",
+      "kind": "PULL",
+      "lots": [
+        "L32611739",
+        "L32611798"
+      ],
+      "rationale": "Three proven deliveries of affected product received (two lots); immediate removal required.",
+      "linkIds": [
+        "LK-c3bce9c89d",
+        "LK-8274ed8d76",
+        "LK-0dc2dc95e8"
+      ],
+      "contractId": "lc_01M5WK6YCYGPFH6RJ23995VRA3",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST20",
+      "locationName": "Corner Basket #14 Fremont",
+      "kind": "PULL",
+      "lots": [
+        "L32611739",
+        "L32611798"
+      ],
+      "rationale": "Two proven deliveries of affected product received (two lots); immediate removal required.",
+      "linkIds": [
+        "LK-03d252b7e3",
+        "LK-9c40bd47b6"
+      ],
+      "contractId": "lc_01M5WK6YCZQYZXSQM5ZN23X4TB",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST22",
+      "locationName": "Corner Basket #16 San Leandro",
+      "kind": "PULL",
+      "lots": [
+        "L32611739",
+        "L32611798"
+      ],
+      "rationale": "Two proven deliveries of affected product received (two lots); immediate removal required.",
+      "linkIds": [
+        "LK-26f8e0e94e",
+        "LK-3b627a02c8"
+      ],
+      "contractId": "lc_01M5WK6YCZQYZXSQM5ZN23X4TC",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST24",
+      "locationName": "Corner Basket #18 Vallejo",
+      "kind": "PULL",
+      "lots": [
+        "L32611739",
+        "L32611798"
+      ],
+      "rationale": "Two proven deliveries of affected product received (two lots); immediate removal required.",
+      "linkIds": [
+        "LK-196f5eba82",
+        "LK-e4c7e80498"
+      ],
+      "contractId": "lc_01M5WK6YCZQYZXSQM5ZN23X4TD",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST25",
+      "locationName": "Corner Basket #19 Concord",
+      "kind": "PULL",
+      "lots": [
+        "L32611739"
+      ],
+      "rationale": "One proven delivery of affected product received; immediate removal required.",
+      "linkIds": [
+        "LK-5306490a60"
+      ],
+      "contractId": "lc_01M5WK6YD0ZZWWE8QEZ0PGT8V7",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST28",
+      "locationName": "Lakeview Markets #503 Carson City",
+      "kind": "PULL",
+      "lots": [
+        "L32611798"
+      ],
+      "rationale": "One proven delivery of affected product received; immediate removal required.",
+      "linkIds": [
+        "LK-aa0cc60a70"
+      ],
+      "contractId": "lc_01M5WK6YD0ZZWWE8QEZ0PGT8V8",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST31",
+      "locationName": "Lakeview Markets #506 Minden",
+      "kind": "PULL",
+      "lots": [
+        "L32611798"
+      ],
+      "rationale": "One proven delivery of affected product received; immediate removal required.",
+      "linkIds": [
+        "LK-793980d87b"
+      ],
+      "contractId": "lc_01M5WK6YD0ZZWWE8QEZ0PGT8V9",
+      "approval": "pending"
+    },
+    {
+      "locationId": "ST08",
+      "locationName": "Harbor Foods #208 Marina",
+      "kind": "CLEAR",
+      "lots": [
+        "AR260922Q3"
+      ],
+      "rationale": "Received only AR260922Q3, which is traced to inputs outside the recall window.",
+      "linkIds": [
+        "NEG-ST08-AR260922Q3"
+      ],
+      "contractId": "lc_01M5WK6YD1J9MDYNRPZF49XXB3",
+      "approval": "not-required"
+    }
+  ],
+  "spreadsheet": {
+    "csv": "traceability_lot_code,product_description,quantity,unit,cte,event_date,location_description,location_id,reference_document_type,reference_document_number,source_system,evidence_query_id\nAR260915Q2,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",29,cases,receiving,2026-09-17,ARC,,bill of lading,RRL210896,wms.receiving,47e73e4c-6a15-45c2-9f0b-9d750b9fe0c2\nAR260915Q2,QUESO FRESCO 12/10OZ,,,shipping,2026-09-17,,,,,wms.lpn,ff35ae29-926a-4957-87cb-83fe34c0720b\nAR260915Q2,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",4,cases,receiving,2026-09-19,Pine & Prairie Grocers #313 Folsom,ST13,store receipt,PPG-590166,retail.receipts,c6b9e4bb-24a5-4417-859d-f4b17d434041\nAR260915Q2,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",4,cases,receiving,2026-09-19,Corner Basket #16 San Leandro,ST22,store receipt,CBK-275266,retail.receipts,c6b9e4bb-24a5-4417-859d-f4b17d434041\nAR260915Q2,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",3,cases,receiving,2026-09-19,Corner Basket #19 Concord,ST25,store receipt,CBK-275269,retail.receipts,c6b9e4bb-24a5-4417-859d-f4b17d434041\nAR260915Q2,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",3,cases,receiving,2026-09-19,Corner Basket #13 Berkeley,ST19,store receipt,CBK-275286,retail.receipts,c6b9e4bb-24a5-4417-859d-f4b17d434041\nAR260915Q2,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",3,cases,receiving,2026-09-19,Pine & Prairie Grocers #312 Roseville,ST12,store receipt,PPG-590190,retail.receipts,c6b9e4bb-24a5-4417-859d-f4b17d434041\nAR260915Q2,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",3,cases,receiving,2026-09-21,HARBOR FOODS #204 SALINAS,ST04,store receipt,HBR-662281,retail.receipts,c6b9e4bb-24a5-4417-859d-f4b17d434041\nAR260915Q2,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",2,cases,receiving,2026-09-21,HARBOR FOODS #202 SANTA CRUZ,ST02,store receipt,HBR-662290,retail.receipts,c6b9e4bb-24a5-4417-859d-f4b17d434041\nAR260915Q2,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",2,cases,receiving,2026-09-21,HARBOR FOODS #209 CARMEL,ST09,store receipt,HBR-662302,retail.receipts,c6b9e4bb-24a5-4417-859d-f4b17d434041\nAR260915Q2,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",2,cases,receiving,2026-09-21,Corner Basket #13 Berkeley,ST19,store receipt,CBK-275308,retail.receipts,c6b9e4bb-24a5-4417-859d-f4b17d434041\nAR260915Q2,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",2,cases,receiving,2026-09-21,Corner Basket #18 Vallejo,ST24,store receipt,CBK-275316,retail.receipts,c6b9e4bb-24a5-4417-859d-f4b17d434041\nAR260915Q2,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",1,cases,receiving,2026-09-21,Corner Basket #14 Fremont,ST20,store receipt,CBK-275329,retail.receipts,c6b9e4bb-24a5-4417-859d-f4b17d434041\nAR260919Q2,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",41,cases,receiving,2026-09-21,ARC,,bill of lading,RRL210950,wms.receiving,47e73e4c-6a15-45c2-9f0b-9d750b9fe0c2\nAR260919Q2,QUESO FRESCO 12/10OZ,,,shipping,2026-09-21,,,,,wms.lpn,ff35ae29-926a-4957-87cb-83fe34c0720b\nAR260919Q2,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",3,cases,receiving,2026-09-22,Lakeview Markets #503 Carson City,ST28,store receipt,LKV-486546,retail.receipts,c6b9e4bb-24a5-4417-859d-f4b17d434041\nAR260919Q2,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",3,cases,receiving,2026-09-22,Pine & Prairie Grocers #312 Roseville,ST12,store receipt,PPG-590214,retail.receipts,c6b9e4bb-24a5-4417-859d-f4b17d434041\nAR260919Q2,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",3,cases,receiving,2026-09-22,Lakeview Markets #506 Minden,ST31,store receipt,LKV-486552,retail.receipts,c6b9e4bb-24a5-4417-859d-f4b17d434041\nAR260919Q2,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",2,cases,receiving,2026-09-23,HARBOR FOODS #204 SALINAS,ST04,store receipt,HBR-662325,retail.receipts,c6b9e4bb-24a5-4417-859d-f4b17d434041\nAR260919Q2,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",4,cases,receiving,2026-09-23,HARBOR FOODS #201 MONTEREY,ST01,store receipt,HBR-662345,retail.receipts,c6b9e4bb-24a5-4417-859d-f4b17d434041\nAR260919Q2,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",2,cases,receiving,2026-09-23,HARBOR FOODS #206 GILROY,ST06,store receipt,HBR-662354,retail.receipts,c6b9e4bb-24a5-4417-859d-f4b17d434041\nAR260919Q2,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",3,cases,receiving,2026-09-23,HARBOR FOODS #205 SEASIDE,ST05,store receipt,HBR-662364,retail.receipts,c6b9e4bb-24a5-4417-859d-f4b17d434041\nAR260919Q2,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",4,cases,receiving,2026-09-24,Corner Basket #14 Fremont,ST20,store receipt,CBK-275359,retail.receipts,c6b9e4bb-24a5-4417-859d-f4b17d434041\nAR260919Q2,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",4,cases,receiving,2026-09-24,Corner Basket #18 Vallejo,ST24,store receipt,CBK-275365,retail.receipts,c6b9e4bb-24a5-4417-859d-f4b17d434041\nAR260919Q2,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",2,cases,receiving,2026-09-24,Corner Basket #16 San Leandro,ST22,store receipt,CBK-275372,retail.receipts,c6b9e4bb-24a5-4417-859d-f4b17d434041\nAR260919Q2,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",3,cases,receiving,2026-09-25,HARBOR FOODS #201 MONTEREY,ST01,store receipt,HBR-662390,retail.receipts,c6b9e4bb-24a5-4417-859d-f4b17d434041\nAR260919Q2,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",4,cases,receiving,2026-09-25,HARBOR FOODS #204 SALINAS,ST04,store receipt,HBR-662402,retail.receipts,c6b9e4bb-24a5-4417-859d-f4b17d434041\nAR260919Q2,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",1,cases,receiving,2026-09-26,Corner Basket #13 Berkeley,ST19,store receipt,CBK-275380,retail.receipts,c6b9e4bb-24a5-4417-859d-f4b17d434041\nL32611739,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",4,cases,shipping,2026-09-19,ST13,ST13,route manifest,R0919-PPG1,wms.store_shipments,1610f51d-20ef-4aff-b395-e8fe54af4d38\nL32611739,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",4,cases,shipping,2026-09-19,ST22,ST22,route manifest,R0919-CBK2,wms.store_shipments,1610f51d-20ef-4aff-b395-e8fe54af4d38\nL32611739,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",3,cases,shipping,2026-09-19,ST25,ST25,route manifest,R0919-CBK2,wms.store_shipments,1610f51d-20ef-4aff-b395-e8fe54af4d38\nL32611739,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",3,cases,shipping,2026-09-19,ST19,ST19,route manifest,R0919-CBK1,wms.store_shipments,1610f51d-20ef-4aff-b395-e8fe54af4d38\nL32611739,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",3,cases,shipping,2026-09-19,ST12,ST12,route manifest,R0919-PPG1,wms.store_shipments,1610f51d-20ef-4aff-b395-e8fe54af4d38\nL32611739,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",3,cases,shipping,2026-09-21,ST04,ST04,route manifest,R0921-HBR1,wms.store_shipments,1610f51d-20ef-4aff-b395-e8fe54af4d38\nL32611739,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",2,cases,shipping,2026-09-21,ST02,ST02,route manifest,R0921-HBR1,wms.store_shipments,1610f51d-20ef-4aff-b395-e8fe54af4d38\nL32611739,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",2,cases,shipping,2026-09-21,ST09,ST09,route manifest,R0921-HBR3,wms.store_shipments,1610f51d-20ef-4aff-b395-e8fe54af4d38\nL32611739,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",2,cases,shipping,2026-09-21,ST19,ST19,route manifest,R0921-CBK1,wms.store_shipments,1610f51d-20ef-4aff-b395-e8fe54af4d38\nL32611739,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",2,cases,shipping,2026-09-21,ST24,ST24,route manifest,R0921-CBK2,wms.store_shipments,1610f51d-20ef-4aff-b395-e8fe54af4d38\nL32611739,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",1,cases,shipping,2026-09-21,ST20,ST20,route manifest,R0921-CBK1,wms.store_shipments,1610f51d-20ef-4aff-b395-e8fe54af4d38\nL32611798,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",3,cases,shipping,2026-09-22,ST28,ST28,route manifest,R0922-LKV1,wms.store_shipments,1610f51d-20ef-4aff-b395-e8fe54af4d38\nL32611798,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",3,cases,shipping,2026-09-22,ST12,ST12,route manifest,R0922-PPG1,wms.store_shipments,1610f51d-20ef-4aff-b395-e8fe54af4d38\nL32611798,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",3,cases,shipping,2026-09-22,ST31,ST31,route manifest,R0922-LKV2,wms.store_shipments,1610f51d-20ef-4aff-b395-e8fe54af4d38\nL32611798,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",2,cases,shipping,2026-09-23,ST04,ST04,route manifest,R0923-HBR1,wms.store_shipments,1610f51d-20ef-4aff-b395-e8fe54af4d38\nL32611798,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",4,cases,shipping,2026-09-23,ST01,ST01,route manifest,R0923-HBR1,wms.store_shipments,1610f51d-20ef-4aff-b395-e8fe54af4d38\nL32611798,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",2,cases,shipping,2026-09-23,ST06,ST06,route manifest,R0923-HBR2,wms.store_shipments,1610f51d-20ef-4aff-b395-e8fe54af4d38\nL32611798,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",3,cases,shipping,2026-09-23,ST05,ST05,route manifest,R0923-HBR2,wms.store_shipments,1610f51d-20ef-4aff-b395-e8fe54af4d38\nL32611798,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",4,cases,shipping,2026-09-24,ST20,ST20,route manifest,R0924-CBK1,wms.store_shipments,1610f51d-20ef-4aff-b395-e8fe54af4d38\nL32611798,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",4,cases,shipping,2026-09-24,ST24,ST24,route manifest,R0924-CBK2,wms.store_shipments,1610f51d-20ef-4aff-b395-e8fe54af4d38\nL32611798,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",2,cases,shipping,2026-09-24,ST22,ST22,route manifest,R0924-CBK2,wms.store_shipments,1610f51d-20ef-4aff-b395-e8fe54af4d38\nL32611798,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",3,cases,shipping,2026-09-25,FS02,FS02,route manifest,R0925-FS,wms.store_shipments,1610f51d-20ef-4aff-b395-e8fe54af4d38\nL32611798,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",3,cases,shipping,2026-09-25,ST01,ST01,route manifest,R0925-HBR1,wms.store_shipments,1610f51d-20ef-4aff-b395-e8fe54af4d38\nL32611798,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",4,cases,shipping,2026-09-25,ST04,ST04,route manifest,R0925-HBR1,wms.store_shipments,1610f51d-20ef-4aff-b395-e8fe54af4d38\nL32611798,\"Queso fresco soft cheese, 10 oz rounds, 12 per case\",1,cases,shipping,2026-09-26,ST19,ST19,route manifest,R0926-CBK1,wms.store_shipments,1610f51d-20ef-4aff-b395-e8fe54af4d38\n",
+    "rows": 53
+  },
+  "drafts": [
+    {
+      "to": "FS02",
+      "subject": "RECALL Class I - Queso fresco soft cheese, 10 oz rounds, 12 per case",
+      "body": "Recall notice from Northgate Produce food safety.\nProduct: Queso fresco soft cheese, 10 oz rounds, 12 per case\nHazard: Listeria monocytogenes\nLots delivered to you: L32611798\nBramble Street Bistro Group (commissary): PULL\nPULL: remove from sale and hold for pickup. HOLD: stop sale pending confirmation.\nWe will call to confirm receipt of this notice."
+    },
+    {
+      "to": "Harbor Foods",
+      "subject": "Product Recall Notification: Queso fresco soft cheese",
+      "body": "This is a recall notification for Queso fresco soft cheese, 10 oz rounds, 12 per case. Affected lot codes are L32611739 and L32611798. For all Harbor Foods locations (#201, #202, #204, #205, #206, #209), immediately pull and hold all product. Our food-safety lead will confirm next steps by phone."
+    },
+    {
+      "to": "Pine & Prairie Grocers",
+      "subject": "RECALL Class I - Queso fresco soft cheese, 10 oz rounds, 12 per case",
+      "body": "Recall notice from Northgate Produce food safety.\nProduct: Queso fresco soft cheese, 10 oz rounds, 12 per case\nHazard: Listeria monocytogenes\nLots delivered to you: L32611739, L32611798\nPine & Prairie Grocers #312 Roseville: PULL\nPine & Prairie Grocers #313 Folsom: PULL\nPULL: remove from sale and hold for pickup. HOLD: stop sale pending confirmation.\nWe will call to confirm receipt of this notice."
+    },
+    {
+      "to": "Corner Basket",
+      "subject": "Product Recall Notification: Queso fresco soft cheese",
+      "body": "This is a recall notification for Queso fresco soft cheese, 10 oz rounds, 12 per case. Affected lot codes are L32611739 and L32611798. For locations #13 Berkeley, #14 Fremont, #16 San Leandro, #18 Vallejo, and #19 Concord, immediately pull and hold all affected product. The distributor will confirm next steps via phone."
+    },
+    {
+      "to": "Lakeview Markets",
+      "subject": "Product Recall Notification: Queso fresco soft cheese",
+      "body": "This is a recall notification for Queso fresco soft cheese, 10 oz rounds, 12 per case, due to Listeria monocytogenes. Affected lot code is L32611798. For Lakeview Markets #503 Carson City and Lakeview Markets #506 Minden, please PULL and HOLD the product immediately. The distributor will confirm next steps by phone."
+    }
+  ],
+  "stats": {
+    "queries": 24,
+    "modelCalls": 8,
+    "races": 0,
+    "retries": 0,
+    "escalations": 0,
+    "ms": 145
+  }
+}
