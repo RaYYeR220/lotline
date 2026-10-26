@@ -35,6 +35,12 @@ importers:
 
   packages/core: {}
 
+  packages/engines/world-model:
+    dependencies:
+      '@lotline/core':
+        specifier: workspace:*
+        version: link:../../core
+
 packages:
 
   '@duckdb/node-api@1.4.1-r.5':
