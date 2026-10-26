@@ -1,0 +1,12 @@
+{
+  "name": "@lotline/world",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": { ".": "./src/index.ts" },
+  "dependencies": {
+    "@duckdb/node-api": "1.4.5-r.1",
+    "@lotline/core": "workspace:*",
+    "@resvg/resvg-js": "^2.6.2"
+  }
+}
