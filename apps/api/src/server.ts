@@ -30,9 +30,9 @@ export function buildServer(deps: ServerDeps): { app: FastifyInstance; runs: Run
   void app.register(cors, { origin: true });
 
   // Errors are JSON with a reason, never a stack trace.
-  app.setErrorHandler((err, _req, reply) => {
+  app.setErrorHandler((err: { statusCode?: number; message?: string }, _req, reply) => {
     const status = err.statusCode && err.statusCode < 500 ? err.statusCode : 500;
-    void reply.status(status).send({ error: status === 500 ? "internal_error" : "bad_request", detail: err.message });
+    void reply.status(status).send({ error: status === 500 ? "internal_error" : "bad_request", detail: err.message ?? "error" });
   });
 
   app.get("/healthz", async () => ({ ok: true, mode: deps.mode }));
