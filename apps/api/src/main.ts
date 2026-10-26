@@ -14,8 +14,7 @@ const examplesFile = path.resolve(process.env.LOTLINE_EXAMPLES ?? "data/sample/n
 const examples = existsSync(examplesFile)
   ? (JSON.parse(readFileSync(examplesFile, "utf8")) as { noticeId: string; text: string; fields?: Record<string, string> }[]).map((n) => ({
       id: n.noticeId,
-      title: `${n.fields?.recalling_firm ?? "Recall"}: ${(n.fields?.product_description ?? n.text.split("
-")[3] ?? "").slice(0, 60)}`,
+      title: `${n.fields?.recalling_firm ?? "Recall"}: ${(n.fields?.product_description ?? n.text.split(/\r?\n/)[3] ?? "").slice(0, 60)}`,
       notice: n.text,
     }))
   : [];
