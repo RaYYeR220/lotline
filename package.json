@@ -9,7 +9,8 @@
     "test": "vitest run",
     "typecheck": "tsc -b",
     "conformance:wm": "tsx scripts/conformance.ts world-model",
-    "conformance:hmem": "tsx scripts/conformance-hmem.ts"
+    "conformance:hmem": "tsx scripts/conformance-hmem.ts",
+    "conformance:markovian": "tsx scripts/conformance-markovian.ts"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

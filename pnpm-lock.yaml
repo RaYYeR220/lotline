@@ -41,6 +41,12 @@ importers:
         specifier: workspace:*
         version: link:../../core
 
+  packages/engines/markovian:
+    dependencies:
+      '@lotline/core':
+        specifier: workspace:*
+        version: link:../../core
+
   packages/engines/world-model:
     dependencies:
       '@lotline/core':
