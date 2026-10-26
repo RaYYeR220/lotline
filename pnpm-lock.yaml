@@ -51,6 +51,21 @@ importers:
         specifier: ^3.24.1
         version: 3.25.76
 
+  packages/agents:
+    dependencies:
+      '@lotline/adapters':
+        specifier: workspace:*
+        version: link:../adapters
+      '@lotline/core':
+        specifier: workspace:*
+        version: link:../core
+      '@lotline/world-model':
+        specifier: workspace:*
+        version: link:../engines/world-model
+      zod:
+        specifier: ^3.24.1
+        version: 3.25.76
+
   packages/core: {}
 
   packages/engines/world-model:
