@@ -34,7 +34,7 @@ async function run(sql: string, okIfFails = false) {
   }
 }
 
-const datasources: Record<string, string> = { packer: "Packer ERP (PostgreSQL)", wms: "Northgate WMS (PostgreSQL)", ref: "Northgate master data (PostgreSQL)" };
+const datasources: Record<string, string> = { packer: "packer_erp_postgresql", wms: "northgate_wms_postgresql", ref: "northgate_master_data_postgresql" };
 for (const [name, desc] of Object.entries(datasources)) {
   await run(`DROP DATASOURCE ${name}`, true);
   await run(`CREATE DATASOURCE ${name} DESCRIBE BY "${desc}" OPTIONS (jdbcdriver "org.postgresql.Driver", jdbcurl "jdbc:postgresql://${PG_HOST}:5432/${name}", username "partners", password "partners", fetchsize "1000")`);
@@ -42,13 +42,13 @@ for (const [name, desc] of Object.entries(datasources)) {
 }
 
 const fileTables: [string, string, string][] = [
-  ["grower", "harvest", "Grower harvest logs (CSV)"],
-  ["grower", "cooling", "Grower cooling logs (CSV)"],
-  ["carrier", "bol_index", "Carrier bill-of-lading index (CSV)"],
+  ["grower", "harvest", "grower_harvest_logs_csv"],
+  ["grower", "cooling", "grower_cooling_logs_csv"],
+  ["carrier", "bol_index", "carrier_bill_of_lading_index_csv"],
 ];
 for (const db of ["grower", "carrier", "retail"]) {
   await run(`DROP LIGHTNING DATABASE ${db}`, true);
-  await run(`CREATE LIGHTNING DATABASE ${db} DESCRIBE BY "${db} partner records"`);
+  await run(`CREATE LIGHTNING DATABASE ${db} DESCRIBE BY "${db}_partner_records"`);
 }
 for (const [db, table, desc] of fileTables) {
   await run(`CREATE LIGHTNING FILESTORE TABLE ${table} FROM ${db} FORMAT CSV OPTIONS (path "${FILES}/${db}/${table}.csv", header "true", inferSchema "false", delimiter ",", description "${desc}")`);
