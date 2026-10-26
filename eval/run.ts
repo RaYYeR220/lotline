@@ -23,7 +23,7 @@ for (const n of notices.filter((x) => !only || only.includes(x.noticeId))) {
   const result = await runRecall({ notice: n.text }, createRunDeps(cfg, trace, { stateDir: "data/generated/eval-state" }));
   const events = trace.events();
   const score = scoreRun(n.noticeId, result, key.byNotice[n.noticeId]);
-  const used = events.filter((e) => e.action === "nightshift.chat" || e.action === "rules.fallback").map((e) => e.model ?? "");
+  const used = events.filter((e) => (e.action === "nightshift.chat" && e.status !== "error") || e.action === "rules.fallback").map((e) => e.model ?? "");
   rows.push({
     ...score,
     modelCalls: used.length,
