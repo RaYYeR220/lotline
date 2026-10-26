@@ -1,0 +1,14 @@
+{
+  "name": "@lotline/scout",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Scout Intent engine: intent sensing, guard stack, capability routing and signed execution contracts.",
+  "exports": { ".": "./src/index.ts" },
+  "dependencies": {
+    "@lotline/core": "workspace:*"
+  },
+  "devDependencies": {
+    "yaml": "^2.5.0"
+  }
+}

@@ -23,6 +23,16 @@ importers:
 
   packages/core: {}
 
+  packages/engines/scout:
+    dependencies:
+      '@lotline/core':
+        specifier: workspace:*
+        version: link:../../core
+    devDependencies:
+      yaml:
+        specifier: ^2.5.0
+        version: 2.9.1
+
 packages:
 
   '@esbuild/aix-ppc64@0.21.5':
@@ -685,6 +695,11 @@ packages:
     engines: {node: '>=8'}
     hasBin: true
 
+  yaml@2.9.1:
+    resolution: {integrity: sha512-3NxN8+78OdzbT7C/WjGsyfPAtJaN3FNDsWxv7Y7mcDsT/oOmgW8BpyQQFFBnvZE3j9Y2Sdz1ULFLezL7Eb2yFw==}
+    engines: {node: '>= 14.6'}
+    hasBin: true
+
 snapshots:
 
   '@esbuild/aix-ppc64@0.21.5':
@@ -1194,3 +1209,5 @@ snapshots:
     dependencies:
       siginfo: 2.0.0
       stackback: 0.0.2
+
+  yaml@2.9.1: {}
