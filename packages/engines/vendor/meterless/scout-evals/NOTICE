@@ -1,0 +1,22 @@
+Meterless Scout Intent eval harness (vendored)
+
+Source:   https://github.com/Meterless/Meterless  (engines/scout-intent/evals/)
+Commit:   1742dec56a66e58eef9dda2d2b865823758ca8cd
+License:  Apache License 2.0 (copy in ./LICENSE)
+Copyright the Meterless authors.
+
+Vendored files (unmodified apart from LF line endings):
+  config/thresholds.yaml
+  fixtures/intents.json
+  regression-set/v1/**
+  runner/index.ts
+  runner/add.ts
+
+No code changes were needed to run the harness on Windows: the runner already
+imports SCOUT_IMPL through pathToFileURL. The runner's only third-party import,
+`yaml`, is resolved from @lotline/scout's devDependencies by the launcher in
+scripts/conformance-scout.ts instead of a package.json in this folder.
+
+Added by Lotline (not upstream): NOTICE, .gitignore (ignores generated reports/).
+
+Run:  pnpm conformance:scout   (report saved to docs/conformance/scout.txt)

@@ -8,7 +8,8 @@
     "build": "pnpm -r build",
     "test": "vitest run",
     "typecheck": "tsc -b",
-    "conformance:wm": "tsx scripts/conformance.ts world-model"
+    "conformance:wm": "tsx scripts/conformance.ts world-model",
+    "conformance:scout": "tsx scripts/conformance-scout.ts"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
