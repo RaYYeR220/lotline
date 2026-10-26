@@ -17,7 +17,8 @@ function cteEventSelect(map: SourceMap): string {
     `SELECT concat('wms.receiving:', w.rcv_id), ${CANON_WMS("w.vendor_lot")}, w.vendor_lot, 'receiving', CAST(w.received_at AS STRING), 'DC01', CAST(w.qty_cases AS INT), w.bol_no, 'wms' FROM wms.receiving w`,
     `SELECT concat('wms.store_shipments:', o.order_line_id), ${CANON_WMS("l.vendor_lot")}, l.vendor_lot, 'shipping', CAST(o.ship_date AS STRING), o.location_id, CAST(o.qty_cases AS INT), o.route_id, 'wms' FROM wms.store_shipments o JOIN wms.lpn l ON o.internal_lpn = l.internal_lpn`,
   ];
-  return parts.join("\nUNION ALL\n");
+  // Zetaris checks the activation query against the declared model: key not null, declared types.
+  return `SELECT COALESCE(u.event_id, '') AS event_id, CAST(u.tlc AS STRING) AS tlc, CAST(u.raw_lot AS STRING) AS raw_lot, CAST(u.cte AS STRING) AS cte, CAST(u.event_date AS STRING) AS event_date, CAST(u.location_id AS STRING) AS location_id, CAST(u.quantity AS INT) AS quantity, CAST(u.reference_doc AS STRING) AS reference_doc, CAST(u.source_system AS STRING) AS source_system FROM (\n${parts.join("\nUNION ALL\n")}\n) u`;
 }
 
 const DDL = `CREATE TABLE cte_event (
@@ -51,6 +52,7 @@ export async function stewardWriteBack(ctx: AgentContext, map: SourceMap): Promi
     return null;
   }
   const wb = (sql: string, purpose: string) => ctx.data.writeBack!(sql, { agent: "DataSteward", purpose, timeoutMs: 300_000 });
+  await wb(`CREATE NAMESPACE IF NOT EXISTS lightning.metastore`, "semantic-layer root namespace");
   await wb(`CREATE NAMESPACE IF NOT EXISTS ${NS}`, "namespace for the traceability layer");
   try {
     await wb(`COMPILE USL traceability DEPLOY NAMESPACE ${NS} DDL\n${DDL}`, "compile the traceability semantic layer");
@@ -68,8 +70,8 @@ export async function stewardWriteBack(ctx: AgentContext, map: SourceMap): Promi
     }
     const res = await wb(`RUN DQ ${rule.name} TABLE ${USL}.cte_event`, `run ${rule.name}`);
     const r = res.rows[0] ?? {};
-    const total = String(r.total ?? r.total_count ?? Object.values(r)[0] ?? "?");
-    const invalid = String(r.invalid ?? r.invalid_count ?? Object.values(r)[2] ?? "?");
+    const total = String(r.total_record ?? r.total ?? "?");
+    const invalid = String(r.invalid_record ?? r.invalid ?? "?");
     out.push({ name: rule.name, total, invalid });
   }
   ctx.trace.emit({

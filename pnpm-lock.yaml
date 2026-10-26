@@ -20,6 +20,9 @@ importers:
       '@lotline/world':
         specifier: workspace:*
         version: link:packages/world
+      '@lotline/world-model':
+        specifier: workspace:*
+        version: link:packages/engines/world-model
       zod:
         specifier: ^3.24.1
         version: 3.25.76

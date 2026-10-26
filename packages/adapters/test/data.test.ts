@@ -80,3 +80,9 @@ describe("ZetarisClient", () => {
     expect(toRows({ data: [{ a: 1, b: null }] })).toEqual({ columns: ["a", "b"], rows: [{ a: "1", b: null }] });
   });
 });
+
+describe("Zetaris payload shapes", () => {
+  it("reads the headers + data arrays the SQL endpoint returns", () => {
+    expect(toRows({ headers: ["harvest_lot", "farm_id"], data: [["GR12-26241-F3", "GRW12"]], total: 1 })).toEqual({ columns: ["harvest_lot", "farm_id"], rows: [{ harvest_lot: "GR12-26241-F3", farm_id: "GRW12" }] });
+  });
+});

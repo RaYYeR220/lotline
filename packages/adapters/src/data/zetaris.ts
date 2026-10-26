@@ -15,14 +15,14 @@ interface ZetarisOptions {
 export function toRows(payload: any): { columns: string[]; rows: Row[] } {
   const data = payload?.data ?? payload?.rows ?? [];
   if (!Array.isArray(data) || data.length === 0) {
-    const cols = payload?.columns ?? payload?.header ?? payload?.schema ?? [];
+    const cols = payload?.headers ?? payload?.columns ?? payload?.header ?? payload?.schema ?? [];
     return { columns: Array.isArray(cols) ? cols.map((c: any) => String(c?.name ?? c)) : [], rows: [] };
   }
   if (!Array.isArray(data[0])) {
     const columns = Object.keys(data[0]);
     return { columns, rows: data.map((r: any) => Object.fromEntries(columns.map((c) => [c, r[c] == null ? null : String(r[c])]))) };
   }
-  const header = payload?.columns ?? payload?.header ?? payload?.schema;
+  const header = payload?.headers ?? payload?.columns ?? payload?.header ?? payload?.schema;
   const columns: string[] = Array.isArray(header) ? header.map((c: any) => String(c?.name ?? c)) : data[0].map((_: unknown, i: number) => `c${i}`);
   return { columns, rows: data.map((r: any[]) => Object.fromEntries(columns.map((c, i) => [c, r[i] == null ? null : String(r[i])]))) };
 }
