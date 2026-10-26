@@ -69,7 +69,7 @@ flowchart LR
 | **DataSteward** | Publishes a governed traceability view and data-quality rules back into Zetaris (live mode). |
 | **DrillAgent** | Nightly mock recalls over active lots, in bounded chunks, reporting which lots would not hold up today. |
 
-Sponsor technology, in detail: [`docs/SPONSORS.md`](docs/SPONSORS.md).
+Sponsor technology, in detail: [`docs/SPONSORS.md`](docs/SPONSORS.md). Pitch deck: [`docs/lotline-deck.pdf`](docs/lotline-deck.pdf).
 
 ## Run it
 
