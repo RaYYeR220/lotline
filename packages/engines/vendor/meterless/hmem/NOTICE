@@ -1,0 +1,19 @@
+H-MEM conformance runner
+========================
+
+runner.ts and vectors/vectors.json in this directory are the official H-MEM
+conformance suite from the Meterless project:
+
+  Source:  https://github.com/Meterless/Meterless
+  Paths:   engines/hmem/conformance/runner.ts
+           engines/hmem/conformance/vectors/vectors.json
+  Commit:  1742dec56a66e58eef9dda2d2b865823758ca8cd
+  License: Apache License, Version 2.0 (full text in LICENSE next to this file)
+  Copyright 2026 Meterless
+
+The files are vendored unmodified (line endings normalised to LF). They are not
+part of Lotline's own code and are excluded from the repo's type-check.
+Lotline's implementation under test lives in packages/engines/hmem and is run
+against this suite with:
+
+  pnpm conformance:hmem
