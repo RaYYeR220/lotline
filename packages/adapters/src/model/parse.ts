@@ -22,7 +22,7 @@ export function extractJson(raw: string): unknown {
   throw new Error("unterminated JSON object in reply");
 }
 
-export function parseWith<T>(schema: z.ZodType<T>, raw: string): { ok: true; value: T } | { ok: false; error: string } {
+export function parseWith<T>(schema: z.ZodType<T, z.ZodTypeDef, unknown>, raw: string): { ok: true; value: T } | { ok: false; error: string } {
   try {
     const result = schema.safeParse(extractJson(raw));
     if (result.success) return { ok: true, value: result.data };

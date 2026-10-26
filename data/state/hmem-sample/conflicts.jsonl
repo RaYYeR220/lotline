@@ -1,0 +1,2 @@
+{"id":"conflict-1","memoryA":"mem-3","memoryB":"mem-4","kind":"numeric","reason":"high-similarity claims with divergent numbers","confidence":0.833,"status":"open","detectedAt":1793027742213}
+{"id":"conflict-1","memoryA":"mem-3","memoryB":"mem-4","kind":"numeric","reason":"high-similarity claims with divergent numbers","confidence":0.833,"status":"open","detectedAt":1793027742213,"decisionConfidence":0.439}

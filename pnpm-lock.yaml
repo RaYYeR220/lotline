@@ -7,6 +7,13 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@lotline/agents':
+        specifier: workspace:*
+        version: link:packages/agents
+      '@lotline/core':
+        specifier: workspace:*
+        version: link:packages/core
     devDependencies:
       '@types/node':
         specifier: ^22.10.0
@@ -59,6 +66,9 @@ importers:
       '@lotline/core':
         specifier: workspace:*
         version: link:../core
+      '@lotline/hmem':
+        specifier: workspace:*
+        version: link:../engines/hmem
       '@lotline/scout':
         specifier: workspace:*
         version: link:../engines/scout

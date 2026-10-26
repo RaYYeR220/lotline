@@ -11,7 +11,7 @@ export interface ChatReq<T> {
   user: string;
   /** PNG bytes for the vision lane, sent as a data URL. */
   imagePng?: Uint8Array;
-  schema: z.ZodType<T>;
+  schema: z.ZodType<T, z.ZodTypeDef, unknown>;
   /** Deterministic answer used when no model can answer (sample mode miss, invalid output, outage). */
   ruleFallback: () => T;
   /** Reasoning mode; off by default for latency. */
@@ -35,7 +35,7 @@ export interface PanelReq<T extends { answer: string; why: string }> {
   purpose: string;
   system: string;
   user: string;
-  schema: z.ZodType<T>;
+  schema: z.ZodType<T, z.ZodTypeDef, unknown>;
   lanes: Lane[];
   ruleVote: () => T;
   targetAgent?: string;

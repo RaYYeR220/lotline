@@ -44,9 +44,12 @@ function isoDates(text: string): string[] {
 /** Deterministic reading of a notice: used when no model answers, and as the check on what a model claims. */
 export function ruleScope(text: string): Extracted {
   const lower = text.toLowerCase();
-  const lotCodes = [...new Set(LOT_PATTERNS.flatMap((re) => [...text.matchAll(re)].map((m) => m[0].toUpperCase())))];
+  const codeInfo = text.match(/code info(?:rmation)?[:\s]+([^\n]+)/i)?.[1] ?? "";
+  const generic = [...codeInfo.matchAll(/\b(?=[A-Z0-9-]*\d)(?=[A-Z0-9-]*[A-Z])[A-Z][A-Z0-9-]{5,}\b/g)].map((m) => m[0]).filter((c) => !/^[A-Z]-\d+-\d{4}$/.test(c));
+  const lotCodes = [...new Set([...LOT_PATTERNS.flatMap((re) => [...text.matchAll(re)].map((m) => m[0].toUpperCase())), ...generic])];
   const word = Object.keys(ALIASES).find((w) => new RegExp(`\\b${w}\\b`).test(lower));
-  const dates = isoDates(text);
+  const between = text.match(/between\s+(.+?)\s+and\s+(.+?(?:20\d{2}|\d{2}-\d{2}))/i);
+  const dates = between ? [...isoDates(between[1]), ...isoDates(between[2])].sort() : isoDates(codeInfo || text);
   const firm = text.match(/recalling firm[:\s]+([^\n.;]+)/i)?.[1]?.trim() ?? text.match(/\b([A-Z][\w&' ]+ (?:Farms?|Packing|Produce|Growers|Fresh)(?: (?:Inc|LLC|Co)\.?)?)/)?.[1] ?? null;
   const cls = text.match(/class\s+(III|II|I)\b/i)?.[1]?.toUpperCase() as Extracted["recallClass"] | undefined;
   const uncertainty: string[] = [];

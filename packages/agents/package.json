@@ -11,6 +11,7 @@
     "@lotline/adapters": "workspace:*",
     "@lotline/world-model": "workspace:*",
     "zod": "^3.24.1",
-    "@lotline/scout": "workspace:*"
+    "@lotline/scout": "workspace:*",
+    "@lotline/hmem": "workspace:*"
   }
 }
