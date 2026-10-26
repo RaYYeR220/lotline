@@ -35,6 +35,12 @@ importers:
 
   packages/core: {}
 
+  packages/engines/hmem:
+    dependencies:
+      '@lotline/core':
+        specifier: workspace:*
+        version: link:../../core
+
   packages/engines/world-model:
     dependencies:
       '@lotline/core':
