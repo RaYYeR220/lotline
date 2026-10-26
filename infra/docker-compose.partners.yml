@@ -1,0 +1,51 @@
+# Partner systems Lotline reads through Zetaris, on the Zetaris network so the query engine can reach them.
+#   npx tsx scripts/export-partners.ts --seed 7 && docker compose -f infra/docker-compose.partners.yml up -d
+name: lotline-partners
+
+services:
+  partners-pg:
+    image: postgres:16-alpine
+    container_name: lotline-partners-pg
+    environment:
+      POSTGRES_USER: partners
+      POSTGRES_PASSWORD: partners
+    volumes:
+      - ./partners/seed/postgres:/seed:ro
+      - ./partners/seed/postgres/01-partners.sql:/docker-entrypoint-initdb.d/01-partners.sql:ro
+    ports:
+      - "127.0.0.1:55432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U partners"]
+      interval: 5s
+      retries: 20
+    networks: [zetaris]
+
+  retail-api:
+    image: node:22-alpine
+    container_name: lotline-retail-api
+    command: ["node", "/app/server.mjs"]
+    volumes:
+      - ./partners/retail-api/server.mjs:/app/server.mjs:ro
+      - ./partners/seed/retail:/seed:ro
+    ports:
+      - "127.0.0.1:58090:8090"
+    networks: [zetaris]
+
+  # Copies the grower and carrier files into the Zetaris file store (its customer-data volume).
+  partner-files:
+    image: alpine:3.20
+    container_name: lotline-partner-files
+    command: ["sh", "-c", "mkdir -p /store/shared/lotline && cp -r /seed/. /store/shared/lotline/ && chmod -R a+rX /store/shared/lotline && echo copied"]
+    volumes:
+      - ./partners/seed/files:/seed:ro
+      - zetaris-customer-data:/store
+
+networks:
+  zetaris:
+    name: zetaris_default
+    external: true
+
+volumes:
+  zetaris-customer-data:
+    name: zetaris_customer-data
+    external: true

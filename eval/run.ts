@@ -4,6 +4,7 @@
 //   LOTLINE_DATA=sample npx tsx eval/run.ts  live models through Nightshift over the same snapshot
 //
 // The agents never see the key: it is read here, after each run, only to score the result.
+try { process.loadEnvFile(".env"); } catch { /* environment only */ }
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { TraceLog, loadConfig } from "@lotline/core";
 import { createRunDeps, runRecall } from "@lotline/agents";

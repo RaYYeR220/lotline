@@ -8,12 +8,18 @@ importers:
 
   .:
     dependencies:
+      '@lotline/adapters':
+        specifier: workspace:*
+        version: link:packages/adapters
       '@lotline/agents':
         specifier: workspace:*
         version: link:packages/agents
       '@lotline/core':
         specifier: workspace:*
         version: link:packages/core
+      '@lotline/world':
+        specifier: workspace:*
+        version: link:packages/world
     devDependencies:
       '@types/node':
         specifier: ^22.10.0

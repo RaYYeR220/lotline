@@ -1,4 +1,5 @@
 // HTTP entry point: the recall API plus the built web UI.
+try { process.loadEnvFile(".env"); } catch { /* environment only */ }
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { TraceLog, loadConfig } from "@lotline/core";

@@ -15,7 +15,11 @@
     "conformance:hmem": "tsx scripts/conformance-hmem.ts",
     "conformance:markovian": "tsx scripts/conformance-markovian.ts",
     "start": "tsx apps/api/src/main.ts",
-    "trace": "tsx run.ts"
+    "trace": "tsx run.ts",
+    "partners:export": "tsx scripts/export-partners.ts --seed 7",
+    "partners:up": "docker compose -f infra/docker-compose.partners.yml up -d",
+    "zetaris:setup": "tsx scripts/setup-zetaris.ts",
+    "eval": "tsx eval/run.ts"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
@@ -25,6 +29,8 @@
   },
   "dependencies": {
     "@lotline/core": "workspace:*",
-    "@lotline/agents": "workspace:*"
+    "@lotline/agents": "workspace:*",
+    "@lotline/adapters": "workspace:*",
+    "@lotline/world": "workspace:*"
   }
 }

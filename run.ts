@@ -2,6 +2,7 @@
 //
 //   npx tsx run.ts --example input_examples/example_1.json
 //   npx tsx run.ts --notice "Recall of ..."        (SAMPLE_MODE=true to run without Zetaris or Nightshift)
+try { process.loadEnvFile(".env"); } catch { /* environment only */ }
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { TraceLog, loadConfig } from "@lotline/core";
