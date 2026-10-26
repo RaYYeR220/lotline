@@ -1,0 +1,11 @@
+{
+  "name": "@lotline/adapters",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": { ".": "./src/index.ts" },
+  "dependencies": {
+    "@lotline/core": "workspace:*",
+    "zod": "^3.24.1"
+  }
+}
