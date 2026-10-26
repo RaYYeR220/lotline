@@ -19,7 +19,9 @@
     "partners:export": "tsx scripts/export-partners.ts --seed 7",
     "partners:up": "docker compose -f infra/docker-compose.partners.yml up -d",
     "zetaris:setup": "tsx scripts/setup-zetaris.ts",
-    "eval": "tsx eval/run.ts"
+    "eval": "tsx eval/run.ts",
+    "web:dev": "pnpm --filter @lotline/web dev",
+    "web:build": "pnpm --filter @lotline/web build"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
