@@ -1,0 +1,9 @@
+node_modules
+**/node_modules
+.git
+logs/*.jsonl
+data/generated
+data/state
+infra/partners/seed
+apps/web/dist
+.env
