@@ -1,0 +1,149 @@
+[
+  {
+    "noticeId": "N1",
+    "text": "FDA ENFORCEMENT REPORT - FOOD\nRecall number: F-1625-2026   Classification: Class I   Status: Ongoing\nRecalling firm: Palomar Flats Farms, Salinas, CA\nProduct description: Romaine lettuce hearts, 3-count bags, packed 12 bags per case\nCode information: All romaine lettuce harvested between August 29, 2026 and August 31, 2026 from Palomar Flats Farms (Salinas, CA). Cartons carry the grower harvest lot code.\nReason for recall: Potential contamination with Shiga toxin-producing Escherichia coli O157:H7, identified in irrigation water sampling adjacent to the harvested fields.\nDistribution pattern: Product was sold to a packer/cooler in Salinas, CA, which repacked and further distributed it to wholesalers in CA and NV.\nProduct quantity: 191 cases\nRecall initiation date: 2026-09-06   Report date: 2026-09-11   Voluntary: Firm initiated",
+    "fields": {
+      "recall_number": "F-1625-2026",
+      "recalling_firm": "Palomar Flats Farms",
+      "city": "Salinas",
+      "state": "CA",
+      "country": "United States",
+      "product_description": "Romaine lettuce hearts, 3-count bags, packed 12 bags per case",
+      "code_info": "All romaine lettuce harvested between August 29, 2026 and August 31, 2026 from Palomar Flats Farms (Salinas, CA). Cartons carry the grower harvest lot code.",
+      "reason_for_recall": "Potential contamination with Shiga toxin-producing Escherichia coli O157:H7, identified in irrigation water sampling adjacent to the harvested fields.",
+      "distribution_pattern": "Product was sold to a packer/cooler in Salinas, CA, which repacked and further distributed it to wholesalers in CA and NV.",
+      "classification": "Class I",
+      "product_quantity": "191 cases",
+      "recall_initiation_date": "2026-09-06",
+      "report_date": "2026-09-11",
+      "status": "Ongoing",
+      "voluntary_mandated": "Voluntary: Firm initiated"
+    }
+  },
+  {
+    "noticeId": "N2",
+    "text": "Halvard Cooling & Pack Co. Issues Voluntary Recall\n\nHalvard Cooling & Pack Co. of Salinas, CA is voluntarily recalling fresh whole slicer cucumbers, 24-count cartons. Potential contamination with Salmonella, detected in routine environmental sampling of the packing line.\n\nAffected product: Lot codes PK260908004 and PK260909002 printed on the case label, packed September 8, 2026 and September 9, 2026.\nDistributed to wholesale distributors and food service operators in CA and NV. Approximately 227 cases are involved.\n\nThe recall was initiated on September 17, 2026 in cooperation with the U.S. Food and Drug Administration (recall F-1953-2026, Class I). Customers who received the product should stop selling it and hold it for pickup.",
+    "fields": {
+      "recall_number": "F-1953-2026",
+      "recalling_firm": "Halvard Cooling & Pack Co.",
+      "city": "Salinas",
+      "state": "CA",
+      "country": "United States",
+      "product_description": "Fresh whole slicer cucumbers, 24-count cartons",
+      "code_info": "Lot codes PK260908004 and PK260909002 printed on the case label, packed September 8, 2026 and September 9, 2026.",
+      "reason_for_recall": "Potential contamination with Salmonella, detected in routine environmental sampling of the packing line.",
+      "distribution_pattern": "Distributed to wholesale distributors and food service operators in CA and NV.",
+      "classification": "Class I",
+      "product_quantity": "227 cases",
+      "recall_initiation_date": "2026-09-17",
+      "report_date": "2026-09-27",
+      "status": "Ongoing",
+      "voluntary_mandated": "Voluntary: Firm initiated"
+    }
+  },
+  {
+    "noticeId": "N3",
+    "text": "FDA ENFORCEMENT REPORT - FOOD\nRecall number: F-2760-2026   Classification: Class I   Status: Ongoing\nRecalling firm: Mesa Dorada Ranch, Yuma, AZ\nProduct description: Whole cantaloupe, 9-count cartons\nCode information: Harvest lot code GR31-26248-F1 (harvested September 5, 2026, field F1).\nReason for recall: Potential contamination with Salmonella Typhimurium, found in FDA sampling of whole cantaloupe from the harvest lot.\nDistribution pattern: Product was sold to a packer/cooler in Salinas, CA, and further distributed to wholesalers in CA and NV.\nProduct quantity: 157 cases\nRecall initiation date: 2026-09-13   Report date: 2026-09-21   Voluntary: Firm initiated",
+    "fields": {
+      "recall_number": "F-2760-2026",
+      "recalling_firm": "Mesa Dorada Ranch",
+      "city": "Yuma",
+      "state": "AZ",
+      "country": "United States",
+      "product_description": "Whole cantaloupe, 9-count cartons",
+      "code_info": "Harvest lot code GR31-26248-F1 (harvested September 5, 2026, field F1).",
+      "reason_for_recall": "Potential contamination with Salmonella Typhimurium, found in FDA sampling of whole cantaloupe from the harvest lot.",
+      "distribution_pattern": "Product was sold to a packer/cooler in Salinas, CA, and further distributed to wholesalers in CA and NV.",
+      "classification": "Class I",
+      "product_quantity": "157 cases",
+      "recall_initiation_date": "2026-09-13",
+      "report_date": "2026-09-21",
+      "status": "Ongoing",
+      "voluntary_mandated": "Voluntary: Firm initiated"
+    }
+  },
+  {
+    "noticeId": "N4",
+    "text": "Halvard Cooling & Pack Co. Issues Voluntary Recall\n\nHalvard Cooling & Pack Co. of Salinas, CA is voluntarily recalling fresh cilantro, bunched, 30 bunches per case. Potential contamination with Cyclospora cayetanensis, linked by state health officials to a cluster of illnesses.\n\nAffected product: Lot codes PK260831007 printed on the case label, packed August 31, 2026.\nDistributed to wholesale distributors and food service operators in CA and NV. Approximately 92 cases are involved.\n\nThe recall was initiated on September 8, 2026 in cooperation with the U.S. Food and Drug Administration (recall F-2170-2026, Class II). Customers who received the product should stop selling it and hold it for pickup.",
+    "fields": {
+      "recall_number": "F-2170-2026",
+      "recalling_firm": "Halvard Cooling & Pack Co.",
+      "city": "Salinas",
+      "state": "CA",
+      "country": "United States",
+      "product_description": "Fresh cilantro, bunched, 30 bunches per case",
+      "code_info": "Lot codes PK260831007 printed on the case label, packed August 31, 2026.",
+      "reason_for_recall": "Potential contamination with Cyclospora cayetanensis, linked by state health officials to a cluster of illnesses.",
+      "distribution_pattern": "Distributed to wholesale distributors and food service operators in CA and NV.",
+      "classification": "Class II",
+      "product_quantity": "92 cases",
+      "recall_initiation_date": "2026-09-08",
+      "report_date": "2026-09-19",
+      "status": "Ongoing",
+      "voluntary_mandated": "Voluntary: Firm initiated"
+    }
+  },
+  {
+    "noticeId": "N5",
+    "text": "FDA ENFORCEMENT REPORT - FOOD\nRecall number: F-1958-2026   Classification: Class I   Status: Ongoing\nRecalling firm: Alder Run Creamery, Petaluma, CA\nProduct description: Queso fresco soft cheese, 10 oz rounds, 12 per case\nCode information: Lot codes AR260915Q2, AR260919Q2 on the case and on each unit, with use-by dates within 30 days of production.\nReason for recall: Product may be contaminated with Listeria monocytogenes; the organism was found in finished-product testing.\nDistribution pattern: Distributed to wholesale distributors in northern CA and NV for retail and food service.\nProduct quantity: 70 cases\nRecall initiation date: 2026-09-27   Report date: 2026-10-03   Voluntary: Firm initiated",
+    "fields": {
+      "recall_number": "F-1958-2026",
+      "recalling_firm": "Alder Run Creamery",
+      "city": "Petaluma",
+      "state": "CA",
+      "country": "United States",
+      "product_description": "Queso fresco soft cheese, 10 oz rounds, 12 per case",
+      "code_info": "Lot codes AR260915Q2, AR260919Q2 on the case and on each unit, with use-by dates within 30 days of production.",
+      "reason_for_recall": "Product may be contaminated with Listeria monocytogenes; the organism was found in finished-product testing.",
+      "distribution_pattern": "Distributed to wholesale distributors in northern CA and NV for retail and food service.",
+      "classification": "Class I",
+      "product_quantity": "70 cases",
+      "recall_initiation_date": "2026-09-27",
+      "report_date": "2026-10-03",
+      "status": "Ongoing",
+      "voluntary_mandated": "Voluntary: Firm initiated"
+    }
+  },
+  {
+    "noticeId": "N6",
+    "text": "Tule Bend Growers Issues Voluntary Recall\n\nTule Bend Growers of Oxnard, CA is voluntarily recalling fresh Roma tomatoes, 25 lb cartons. Potential contamination with Salmonella Newport associated with packing-shed wash water.\n\nAffected product: All Roma tomatoes harvested between September 25, 2026 and September 27, 2026 from Tule Bend Growers (Oxnard, CA). Cartons carry the grower harvest lot code.\nProduct was sold to a packer/cooler in Salinas, CA, which repacked and further distributed it to wholesalers in CA and NV. Approximately 320 cases are involved.\n\nThe recall was initiated on October 4, 2026 in cooperation with the U.S. Food and Drug Administration (recall F-1915-2026, Class II). Customers who received the product should stop selling it and hold it for pickup.",
+    "fields": {
+      "recall_number": "F-1915-2026",
+      "recalling_firm": "Tule Bend Growers",
+      "city": "Oxnard",
+      "state": "CA",
+      "country": "United States",
+      "product_description": "Fresh Roma tomatoes, 25 lb cartons",
+      "code_info": "All Roma tomatoes harvested between September 25, 2026 and September 27, 2026 from Tule Bend Growers (Oxnard, CA). Cartons carry the grower harvest lot code.",
+      "reason_for_recall": "Potential contamination with Salmonella Newport associated with packing-shed wash water.",
+      "distribution_pattern": "Product was sold to a packer/cooler in Salinas, CA, which repacked and further distributed it to wholesalers in CA and NV.",
+      "classification": "Class II",
+      "product_quantity": "320 cases",
+      "recall_initiation_date": "2026-10-04",
+      "report_date": "2026-10-13",
+      "status": "Ongoing",
+      "voluntary_mandated": "Voluntary: Firm initiated"
+    }
+  },
+  {
+    "noticeId": "N7",
+    "text": "FDA ENFORCEMENT REPORT - FOOD\nRecall number: F-2896-2026   Classification: Class I   Status: Ongoing\nRecalling firm: Golden Crest Mushroom Co., Los Angeles, CA\nProduct description: Enoki mushrooms, 200 g (7.05 oz) clear plastic packages, product of Korea\nCode information: Lot codes EN0826A and EN0826B, best-before dates through October 30, 2026\nReason for recall: Product may be contaminated with Listeria monocytogenes.\nDistribution pattern: Distributed to wholesalers and Asian specialty grocers in CA, NV and AZ.\nProduct quantity: 3,240 cases\nRecall initiation date: 2026-09-11   Report date: 2026-09-22   Voluntary: Firm initiated",
+    "fields": {
+      "recall_number": "F-2896-2026",
+      "recalling_firm": "Golden Crest Mushroom Co.",
+      "city": "Los Angeles",
+      "state": "CA",
+      "country": "United States",
+      "product_description": "Enoki mushrooms, 200 g (7.05 oz) clear plastic packages, product of Korea",
+      "code_info": "Lot codes EN0826A and EN0826B, best-before dates through October 30, 2026",
+      "reason_for_recall": "Product may be contaminated with Listeria monocytogenes.",
+      "distribution_pattern": "Distributed to wholesalers and Asian specialty grocers in CA, NV and AZ.",
+      "classification": "Class I",
+      "product_quantity": "3,240 cases",
+      "recall_initiation_date": "2026-09-11",
+      "report_date": "2026-09-22",
+      "status": "Ongoing",
+      "voluntary_mandated": "Voluntary: Firm initiated"
+    }
+  }
+]
