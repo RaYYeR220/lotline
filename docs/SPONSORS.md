@@ -6,7 +6,7 @@ Each sponsor technology owns one job. Take any of them away and a recall run can
 |---|---|---|
 | Read five partner systems in place | **Zetaris** data layer | `packages/adapters/src/data/zetaris.ts`, `scripts/setup-zetaris.ts` |
 | Leave the data layer better than we found it | **Zetaris** Unified Semantic Layer + data-quality rules | `packages/agents/src/steward.ts` |
-| Every model call | **Meterless Nightshift** (OpenAI-compatible endpoint, signed compute receipts) | `packages/adapters/src/model/nightshift.ts` |
+| Every model call | **Meterless Nightshift** (chat-completions endpoint, signed compute receipts) | `packages/adapters/src/model/nightshift.ts` |
 | Read scanned bills of lading locally | **Meterless Nightshift** document reader (local OCR specialist) | `packages/adapters/src/model/ocr.ts`, `packages/agents/src/docreader.ts` |
 | Trace graph | **Meterless World Model** engine — our implementation | `packages/engines/world-model` |
 | Action gate | **Meterless Scout Intent** engine — our implementation | `packages/engines/scout`, `packages/agents/src/gate.ts` |
@@ -25,7 +25,7 @@ A recall touches records kept by five companies: a grower's harvest spreadsheets
 
 ## Meterless Nightshift: the model provider
 
-Every model call goes to Nightshift's OpenAI-compatible endpoint (`http://127.0.0.1:8088/v1`). No product code calls a model provider directly.
+Every model call goes to Nightshift's chat-completions endpoint (`http://127.0.0.1:8088/v1`). No product code calls a model provider directly.
 
 - **Lanes.** Agents ask for a lane, not a model: `reason`, `judge`, `fast`, `vision`. Lanes are pinned to models in `.env` so the trace always shows which model did what.
 - **Signed receipts.** Nightshift returns a compute receipt with every answer: requested model, routed model, latency and an ed25519-signed envelope. Lotline logs the receipt id beside the model on every model event (`detail.receipt_id`), so each decision in a run can be matched to Nightshift's own signed record.

@@ -24,7 +24,7 @@ interface Completion {
 
 export const short = (s: string, n = 140) => (s.length > n ? s.slice(0, n - 1) + "…" : s).replace(/\s+/g, " ");
 
-/** Every model call in Lotline goes through Meterless Nightshift's OpenAI-compatible endpoint. */
+/** Every model call in Lotline goes through Meterless Nightshift's chat-completions endpoint. */
 export class NightshiftGateway implements ModelGateway {
   readonly mode = "live" as const;
   private readonly fetchImpl: typeof fetch;
