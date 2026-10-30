@@ -30,6 +30,8 @@ export interface TraceGraph {
 
 const AGENT = "TracerAgent";
 export const DISTRIBUTOR_ID = process.env.LOTLINE_DISTRIBUTOR_ID ?? "NGP";
+/** Partner store receipts. Defaults to the retail API; Lakeview is the governed table when set. */
+const storeReceiptsTable = () => process.env.LOTLINE_STORE_RECEIPTS || "retail.receipts";
 
 const linkId = (kind: LinkKind, from: string, to: string, key: string) =>
   `LK-${createHash("sha256").update(`${kind}|${from}|${to}|${key}`).digest("hex").slice(0, 10)}`;
@@ -189,9 +191,10 @@ export async function traceForward(ctx: AgentContext, implicated: string[], comm
     const stores = [...new Set(lines.rows.map((r) => String(r[ss.location!])))];
     const dates = lines.rows.map((r) => String(r[ss.date!]).slice(0, 10)).sort();
     const rr = map["retail.receipts"];
+    const receiptsTable = storeReceiptsTable();
     const retail = stores.length
       ? await ctx.data.query(
-          `SELECT * FROM retail.receipts WHERE store_id IN ${inList(stores)} AND ${rr.date} >= ${q(dates[0])} AND ${rr.date} <= ${q(addDays(dates.at(-1)!, 4))} ORDER BY ${rr.pk}`,
+          `SELECT * FROM ${receiptsTable} WHERE store_id IN ${inList(stores)} AND ${rr.date} >= ${q(dates[0])} AND ${rr.date} <= ${q(addDays(dates.at(-1)!, 4))} ORDER BY ${rr.pk}`,
           qctx("stores' own receiving in the delivery window"),
         )
       : null;
@@ -200,7 +203,7 @@ export async function traceForward(ctx: AgentContext, implicated: string[], comm
       const store = String(r[ss.location!]);
       const lot = lotOfLpn.get(lpn) ?? "";
       const corroborating = retail?.rows.find((x) => String(x.store_id) === store && ["exact", "truncated"].includes(matchLot(lot, String(x[rr.lot!])).kind) && dayDiff(String(r[ss.date!]), String(x[rr.date!])) >= 0 && dayDiff(String(r[ss.date!]), String(x[rr.date!])) <= 3);
-      const ev = [evidence(lines, "wms.store_shipments", ss.pk, r), ...(corroborating && retail ? [evidence(retail, "retail.receipts", rr.pk, corroborating)] : [])];
+      const ev = [evidence(lines, "wms.store_shipments", ss.pk, r), ...(corroborating && retail ? [evidence(retail, receiptsTable, rr.pk, corroborating)] : [])];
       add(link("shipped-to", `lpn:${lpn}`, `loc:${store}`, String(r[ss.date!]), ev, qty(r, ss.qty)), {
         lot: corroborating ? matchLot(lot, String(corroborating[rr.lot!])).kind : "n/a", bol: null, qtyDelta: null, dayDelta: null, firstParty: true,
       });

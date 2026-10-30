@@ -22,7 +22,9 @@ export const addDays = (iso: string, n: number) => new Date(Date.parse(iso.slice
 
 /** Evidence pointer for one row returned by the data layer. */
 export function evidence(res: QueryResult, table: string, pk: string, row: Row): Evidence {
-  const [source, name] = table.split(".");
+  const dot = table.lastIndexOf(".");
+  const source = dot < 0 ? table : table.slice(0, dot);
+  const name = dot < 0 ? table : table.slice(dot + 1);
   const fields: Record<string, string> = {};
   for (const [k, v] of Object.entries(row)) if (v != null) fields[k] = v;
   return { source, table: name, rowKey: String(row[pk] ?? ""), queryId: res.queryId, sql: res.sql, fields };

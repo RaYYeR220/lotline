@@ -26,7 +26,8 @@ const TABLE_CTE: Record<string, { cte: Cte; lot: string[]; qty: string[]; date: 
 const first = (fields: Record<string, string>, cols: string[]) => cols.map((c) => fields[c]).find((v) => v != null && v !== "") ?? "";
 
 function rowFor(link: TraceLink, e: Evidence, product: string): FdaRow {
-  const spec = TABLE_CTE[`${e.source}.${e.table}`] ?? TABLE_CTE[e.table];
+  const qualified = `${e.source}.${e.table}`;
+  const spec = TABLE_CTE[qualified] ?? TABLE_CTE[e.table] ?? (e.table.endsWith("receipts") ? TABLE_CTE["retail.receipts"] : undefined);
   const f = e.fields;
   return {
     // The traceability lot code is the one assigned at packing; receivers' drifted spellings fold back onto it.
