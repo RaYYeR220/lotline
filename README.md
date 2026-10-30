@@ -71,6 +71,22 @@ flowchart LR
 
 Sponsor technology, in detail: [`docs/SPONSORS.md`](docs/SPONSORS.md). Pitch deck: [`docs/lotline-deck.pdf`](docs/lotline-deck.pdf). Demo video (3 min): https://youtu.be/o5Xg625DtGc
 
+## Zetaris for coding agents (MCP)
+
+`apps/mcp` is an MCP server over Lotline's Zetaris data layer, so a coding agent works with the partner systems the same way the recall agents do: in place, through one SQL endpoint.
+
+| Tool | What it does |
+|---|---|
+| `list_sources`, `describe_table` | The Zetaris catalog: every partner system, its tables and columns, plus Lotline's semantic-layer tables |
+| `run_sql` | One read-only Spark SQL statement across any partner systems; returns rows and the Zetaris query id |
+| `register_file` | Registers a CSV a partner dropped in the Zetaris file store as a Lightning table |
+| `publish_semantic_table` | Publishes a governed table in the Lotline semantic layer (`lightning.metastore.lotline.<usl>.<table>`), bound to a SELECT over the partner systems; columns cast, key never null |
+| `quality_check` | Registers a data-quality rule on a semantic-layer table and runs it |
+
+Writes stay inside the Lotline namespace and the partner file store. `.cursor/mcp.json` wires the server into Cursor (`agent mcp enable zetaris` in Cursor CLI).
+
+**Scenario: a partner changes formats.** `npx tsx scripts/scenario-lakeview.ts` takes Lakeview Markets off the retail chains' API and drops their nightly CSV in the Zetaris file store, in their own format. A recall run can then no longer confirm Lakeview deliveries from the stores' own receiving records. Onboarding the file is a job for a coding agent with the MCP tools: register the CSV, publish `receiving.store_receipts` serving the API and the CSV together, check it, and run the tracer against it with `LOTLINE_STORE_RECEIPTS=lightning.metastore.lotline.receiving.store_receipts`. `--reset` puts Lakeview back on the API.
+
 ## Run it
 
 Requirements: Node 22+ and pnpm 9 (`corepack enable`), or Docker.
