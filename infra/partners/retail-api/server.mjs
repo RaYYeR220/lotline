@@ -1,8 +1,10 @@
 // The retail chains' receiving API: GET /receipts[?chain_id=..&store_id=..&since=YYYY-MM-DD] -> JSON array.
 import { createServer } from "node:http";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 
-const rows = JSON.parse(readFileSync(process.env.RECEIPTS_FILE ?? "/seed/receipts.json", "utf8"));
+// receipts-api.json, when a scenario writes one, is what the chains currently post (see scripts/scenario-lakeview.ts).
+const file = process.env.RECEIPTS_FILE ?? (existsSync("/seed/receipts-api.json") ? "/seed/receipts-api.json" : "/seed/receipts.json");
+const rows = JSON.parse(readFileSync(file, "utf8"));
 const port = Number(process.env.PORT ?? 8090);
 
 createServer((req, res) => {
